@@ -1,5 +1,5 @@
 .starter-template {
-  padding: 40px 15px;
+  padding: 90px 15px;
   text-align: center;
 }
 body{
@@ -41,25 +41,7 @@ body{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.form-inline#todo{
-	margin:0 auto;
-	max-width: 500px;
-	padding: 15px;
-	border:solid;
-	border-radius:8px;
-	height:130px;
-}	
-.form-group#right{
-	float:right;
-	width: 25%;
-	border-left:solid;
-	padding-left:10px;
-}
-.form-group#left{
-	float:left;
-	width:75%;
-	height:100%;
-}
+
 .container{
 	max-width:768px;
 }
@@ -69,4 +51,17 @@ body{
 .jumbotron{
 	/* background-color:#0E73A4; */
 	/* color:white; */
+}
+.row{
+	border:solid;
+	border-radius:8px;
+	padding:30px;
+	border-color: white;
+	background-color:#336699;
+	color: white;
+}
+.row .row{
+	border:none;
+	margin-right: 1%;
+	padding:0;
 }
