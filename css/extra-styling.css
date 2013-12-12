@@ -1,6 +1,6 @@
 .starter-template {
   padding: 90px 15px;
-  text-align: center;
+  /* text-align: center; */
 }
 body{
   padding-top: 40px;
@@ -43,7 +43,7 @@ body{
 }
 
 .container{
-	max-width:768px;
+	/* max-width:768px; */
 }
 .navbar-nav#back{
 	margin-right:10px;
@@ -57,7 +57,7 @@ body{
 	border-radius:8px;
 	padding:30px;
 	border-color: white;
-	background-color:#336699;
+	/* background-color:#336699; */
 	color: white;
 }
 .row .row{
