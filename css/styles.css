@@ -45,8 +45,16 @@ body{
 .container{
 	/* max-width:768px; */
 }
+
+.navbar-header { background-color: #111618;}
 .navbar-nav#back{
 	margin-right:10px;
+}
+.navbar-inverse {
+  font-family: 'Crete Round', serif; 
+}
+.navbar-brand {
+    font-size: 26px;
 }
 .jumbotron{
 	/* background-color:#0E73A4; */
@@ -64,4 +72,34 @@ body{
 	border:none;
 	margin-right: 1%;
 	padding:0;
+}
+
+/* Media Queries
+=================*/
+@media (min-width: 768px) and (max-width: 767px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 991px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1199px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+
+/* Fonts
+=================*/
+@font-face {
+  font-family: 'Crete Round';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Crete Round'), local('CreteRound-Regular'), url(/fonts/CreteRound-Regular.woff) format('woff');
 }
