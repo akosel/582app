@@ -128,27 +128,34 @@ body{
 
 /* Goals Page
 =================*/
-#goalsPage #goalsbar { background-color: #73C7C2; /*height: 100px;*/ width: 100%; margin-top: -49px;
+#goalsPage #goalsbar { background-color: #73C7C2; /*height: 100px;*/ width: 100%; margin-top: 11px;
 }
 #goalsPage .goalsButton { display: inline-block; padding: 20px 0px 20px 0px;
 }
 #goalsPage .goalsTitle { display: inline; color: #418481; padding: 0px 20px; border-right: 2px solid #3D6E6A; font-family: 'CreteRound-Regular', serif; font-weight: normal; font-size: 22px;
 }
-#goalsPage .goalsCreate { background-color: #418481; display: inline-block; width: 150px; padding: 10px; position: absolute; right:0px; top:40px;
+#goalsPage .goalsTitle:hover { color: #247671;
+}
+#goalsPage .goalsCreate { background-color: #418481; display: inline-block; width: 150px; padding: 10px; position: absolute; right: 20px; top:40px;
+}
+#goalsPage .goalTitle:hover { color: #247671;
 }
 #goalsPage .fa-plus-circle { color: #233F3E;
 }
-#goalsPage .createButton { color: #000; display: inline; font-size: 18px; margin-left: 10px;
+#goalsPage .createLabel { color: #000; display: inline; font-size: 18px; margin-left: 10px;
 }
+#goalsPage .goalsCreate:hover { background-color: gray;}
+#goalsPage .goalsCreate:hover .createLabel, #goalsPage .goalsCreate:hover .fa-plus-circle { color: #fff;}
 #goalsPage .active { color: #000; font-weight: bold;
 }
-#goalsPage .buttonWrapper { width: 1024px; margin: auto; padding: 30px 0px;
+#goalsPage .active:hover { color: #000;}
+#goalsPage .buttonWrapper { width: 1024px; margin: auto; padding: 30px 0px; position: relative;
 }
 #goalsPage .mainWrapper { width: 1024px; margin: auto; /* padding: 15px 0px; */
 }
 #goalsPage .leftWrapper { width: 60%; display: inline-block;
 }
-#goalsPage .rightWrapper { width: 30%; display: inline-block;
+#goalsPage .rightWrapper { width: 30%; display: inline-block; vertical-align: middle; margin-top: -30px;
 }
 #goalsPage .divLeft {width: 90px; height: 90px;padding: 10px 10px 0 0; background-color: #73C7C2; border-radius: 50px; display: inline-block;
 }
@@ -158,9 +165,16 @@ body{
 }
 #goalsPage .goalEndDate { margin-left: 10px; padding-top: 11px; font-size: 17px; text-align: center;
 }
-#goalsPage .addIcon { display: inline-block;
+#goalsPage .addIcon { display: inline-block; margin: 0 10px;
 }
-#goalsPage .friendIconDiv { width: 58px; height: 58px; border-radius: 40px; background-color: #999; display: inline-block;}
+#goalsPage .friendIconDiv { width: 58px; height: 58px; border-radius: 40px; background-color: #999; display: inline-block;
+}
+#goalsPage .container { width: 100%;
+}
+#goalsPage .navbar { width: 1024px; margin: 0 auto;
+}
+#goalsPage .friendIcon {width: 58px; height: 58px; border-radius: 40px;
+}
 
 
 
