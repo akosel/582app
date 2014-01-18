@@ -75,102 +75,92 @@ body{
 	padding:0;
 }
 
-body {
-  color: #152126;
+/* Home Page
+=================*/
+#homePage { color: #152126;
 }
+
 /*activity feed divider line*/ 
-.line {
-  border-bottom: 1px solid #ccc;
-  padding-right: 20px;
-  width: 100%;
-}
-.divLeft {
-  width: 25%;
-  padding: 10px 10px auto auto;
-}
-.divRight {
-  width: 75%;
-  padding: 10px auto 10px 10px;
+#homePage .line { border-bottom: 1px solid #ccc; padding-right: 20px; width: 100%;
 }
 
-.goTo {
-  height: 100%;
-  vertical-align: middle;
+#homePage .divLeft { width: 25%; padding: 10px 10px auto auto;
+}
+#homePage .divRight { width: 75%; padding: 10px auto 10px 10px;
+}
+#homePage .goTo { height: 100%; vertical-align: middle; /*display: none;*/
 }
 
-.toDoLine {
-  border-bottom: 1px solid #C66236;
-  padding-left: 20px;
+/*#homePage .goTo:hover { display: inline-block;
+}*/
+
+#homePage .toDoLine { border-bottom: 1px solid #C66236; padding-left: 20px;
+}
+#homePage .toDoBackground { background-color: #F67A45;
+}
+#homePage .collapsed { width: 0px;
+}
+#homePage .commentBox.expand { background-color: #F58D6A; width: 265px; height: 80px;
+}
+#homePage h2.divTitle { font-size: 25px; font-family: Helvetica, Arial, sans-serif;
+}
+#homePage .myIcon { width: 91px; height: 91px;
+}
+#homePage h3.activityFriend { font-size: 17px; font-weight: bold;
+}
+#homePage .activityFriendUpdate { font-size: 15px; color: #4D4D4D;
+}
+#homePage .activityTimestamp { font-size: 13px; color: #999999;
+}
+#homePage .friendIcon { width: 58px; height: 58px; border-radius: 50px;
+}
+#homePage h3.todoName { font-size: 17px; font-weight: bold;
+}
+#homePage .todoGoalType { font-size: 14px; color: #1A1A1A;
+}
+#homePage .todoTimestamp { font-size: 14px; color: #7A3415;
+}
+#homePage .todoCheckBox { width: 34px; height: 34px; border: 1px solid #7A3415;
 }
 
-.toDoBackground {
-  background-color: #F67A45;
+#homePage .commentText { color: #7A3415; font-size: 15px;
 }
 
-.collapsed {
-  width: 0px;
+/* Goals Page
+=================*/
+#goalsPage #goalsbar { background-color: #73C7C2; height: 100px; width: 100%;
 }
-.commentBox.expand {
-  background-color: #F58D6A;
-  width: 265px;
-  height: 80px;
+#goalsPage {
 }
-
-.h2.divTitle {
-  font-size: 25px;
-  font-family: Helvetica, Arial, sans-serif;
+#goalsPage {
 }
-.myIcon {
-  width: 91px;
-  height: 91px;
+#goalsPage {
 }
-
-.h3.activityFriend {
-  font-size: 17px;
-  font-weight: bold;
+#goalsPage {
 }
-
-.activityFriendUpdate {
-  font-size: 15px;
-  color: #4D4D4D;
+#goalsPage {
 }
-
-.activityTimestamp {
-  font-size: 13px;
-  color: #999999;
+#goalsPage {
 }
-
-.friendIcon {
-  width: 58px;
-  height: 58px;
-  border-radius: 50px;
+#goalsPage {
+}
+#goalsPage {
+}
+#goalsPage {
+}
+#goalsPage {
+}
+#goalsPage {
+}
+#goalsPage {
+}
+#goalsPage {
+}
+#goalsPage {
+}
+#goalsPage {
 }
 
-.h3.todoName {
-  font-size: 17px;
-  font-weight: bold;
-}
-
-.todoGoalType {
-  font-size: 14px;
-  color: #1A1A1A;
-}
-
-.todoTimestamp {
-  font-size: 14px;
-  color: #7A3415;
-}
-
-.todoCheckBox {
-  width: 34px;
-  height: 34px;
-  border: 1px solid #7A3415;
-}
-
-.commentText {
-  color: #7A3415;
-  font-size: 15px;
-}
 
 
 /* Media Queries
