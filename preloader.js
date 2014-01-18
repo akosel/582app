@@ -10,6 +10,7 @@ $('head').html("    <!-- Basic: Page Needs"+
 "     ================================================== -->"+
 "    <link href='/bootstrap/css/bootstrap.min.css' rel='stylesheet'>"+
 "    <link href='/css/extra-styling.css' rel='stylesheet'>"+
+"    <link href='/css/styles.css' rel='stylesheet'>"+
 "    <script src='/bootstrap/js/bootstrap.min.js'></script>"+
 "    <script src='/nav/navbar.js'></script>"
 )
