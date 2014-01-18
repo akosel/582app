@@ -12,13 +12,14 @@ $('#navbar').html(
 "        </div>"+
 "        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>"+
 "            <ul class='nav navbar-nav'>"+
-"                <li><a href='/newgoal'>New Goal</a></li>"+
-"                <li><a href='/brainstorm'>Brainstorm</a></li>"+
-"                <li><a href='/goalrequests'>Goal Requests</a></li>"+
-"                <li><a href='/missedgoals'>Missed Goals</a></li>"+
-"                <li><a href='/todo'>To Do</a></li>"+
+"                <li><a href='/dashboard/'>Dashboard</a></li>"+
+"                <li><a href='/goals/'>Goals</a></li>"+
+"                <li><a href='/friends/'>Friends</a></li>"+
 "            </ul>"+
+"         <ul class='nav navbar-nav navbar-right' id='back'>"+
+"          <li><a href='/home.html'>Signout</a></li>"+
+"         </ul> "+ 
 "        </div><!-- /.navbar-collapse -->"+
 "    </nav>"
 )
-});
+})
