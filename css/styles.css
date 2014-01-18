@@ -51,7 +51,8 @@ body{
 	margin-right:10px;
 }
 .navbar-inverse {
-  font-family: 'Crete Round', serif; 
+  font-family: 'CreteRound-Regular', serif;
+  background-color: #111618;
 }
 .navbar-brand {
     font-size: 26px;
@@ -74,6 +75,104 @@ body{
 	padding:0;
 }
 
+body {
+  color: #152126;
+}
+/*activity feed divider line*/ 
+.line {
+  border-bottom: 1px solid #ccc;
+  padding-right: 20px;
+  width: 100%;
+}
+.divLeft {
+  width: 25%;
+  padding: 10px 10px auto auto;
+}
+.divRight {
+  width: 75%;
+  padding: 10px auto 10px 10px;
+}
+
+.goTo {
+  height: 100%;
+  vertical-align: middle;
+}
+
+.toDoLine {
+  border-bottom: 1px solid #C66236;
+  padding-left: 20px;
+}
+
+.toDoBackground {
+  background-color: #F67A45;
+}
+
+.collapsed {
+  width: 0px;
+}
+.commentBox.expand {
+  background-color: #F58D6A;
+  width: 265px;
+  height: 80px;
+}
+
+.h2.divTitle {
+  font-size: 25px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.myIcon {
+  width: 91px;
+  height: 91px;
+}
+
+.h3.activityFriend {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.activityFriendUpdate {
+  font-size: 15px;
+  color: #4D4D4D;
+}
+
+.activityTimestamp {
+  font-size: 13px;
+  color: #999999;
+}
+
+.friendIcon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50px;
+}
+
+.h3.todoName {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.todoGoalType {
+  font-size: 14px;
+  color: #1A1A1A;
+}
+
+.todoTimestamp {
+  font-size: 14px;
+  color: #7A3415;
+}
+
+.todoCheckBox {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #7A3415;
+}
+
+.commentText {
+  color: #7A3415;
+  font-size: 15px;
+}
+
+
 /* Media Queries
 =================*/
 @media (min-width: 768px) and (max-width: 767px) {
@@ -84,13 +183,13 @@ body{
 
 @media (min-width: 992px) and (max-width: 991px) {
   .container {
-    width: 970px;
+    width: 1024px;
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1199px) {
   .container {
-    width: 1170px;
+    width: 1024px;
   }
 }
 
@@ -98,8 +197,8 @@ body{
 /* Fonts
 =================*/
 @font-face {
-  font-family: 'Crete Round';
+  font-family: 'CreteRound-Regular';
   font-style: normal;
   font-weight: 400;
-  src: local('Crete Round'), local('CreteRound-Regular'), url(/fonts/CreteRound-Regular.woff) format('woff');
+  src: local('CreteRound-Regular'), local('CreteRound-Regular'), url(/fonts/CreteRound-Regular.woff) format('woff');
 }
