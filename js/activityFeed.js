@@ -4,10 +4,10 @@ $('#activityFeed').append(
 "    <div class='container'>"+
 "        <div class='media'>"+
 "            <a class='pull-left' href='#'>"+
-"                <img class='media-object' src='/img/john.jpeg' alt='pumpkinstin'>"+
+"                <div class='media-object' alt='pumpkinstin'></div>"+
 "            </a>"+
 "            <div class='media-body'>"+
-"                <h4 class='media-heading'>John Pumpkinstin</h4>"+
+"                <h4 class='media-heading media-heading-bold'>John Pumpkinstin</h4>"+
 "                I like to eat pumpkins."+
 "            </div>"+
 "        </div>"+

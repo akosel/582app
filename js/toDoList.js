@@ -4,11 +4,12 @@ $('#toDoList').append(
 "    <div class='container'>"+
 "        <div class='media'>"+
 "            <a class='pull-left' href='#'>"+
-"                <img class='media-object' src='/img/john.jpeg' alt='pumpkinstin'>"+
+"                <i class='fa-media-object fa fa-square-o fa-4x'></i>"+
 "            </a>"+
 "            <div class='media-body'>"+
-"                <h4 class='media-heading'>John Pumpkinstin</h4>"+
-"                I like to eat pumpkins."+
+"                 <h5>February 1, 2014</h5>"+
+"                <h4 class='media-heading'>Run "+ Math.ceil(Math.random()*10)  +"</h4>"+
+"                Part of my training program"+
 "            </div>"+
 "        </div>"+
 "    </div>"

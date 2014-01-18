@@ -38,18 +38,18 @@ body#dashboard{
 }
 #profileHeader{
     background-color:rgb(128,128,128);
-    padding:3em;
+    padding:1em;
 }
 #navbar{
     float: left;
-    background-color: #111618;
+    background-color: #162127;
     height: 51px;
     position: absolute;
     top: 0;
 }
 #bottomnavbar{
     float: left;
-    background-color: #111618;
+    background-color: #162127;
     position: fixed;
     bottom: 0;
     height:100px;
@@ -60,10 +60,49 @@ body#dashboard{
 }
 .sidefiller{
     height:100%;
-    width:131px;
+    width:10.15%;
     float:left;
     background-color:#eee;
 }
 .navbar-fixed-bottom{
     height:100px;
+}
+
+.navbar-header { background-color: #162127;}
+.navbar-nav#back{
+	margin-right:10px;
+}
+.navbar-inverse {
+  font-family: 'CreteRound-Regular', serif;
+  background-color: #162127;
+}
+.navbar-brand {
+    font-size: 26px;
+}
+.media-object{
+    border-radius:50px;
+    background-color:white;
+    height:50px;
+    width:50px;
+    float:left;
+    margin: 20px 0;
+}
+.media-body{
+    margin:20px 50px;
+}
+#profileHeader .media-heading{
+    color:white;
+}
+.fa-media-object{
+    height:50px;
+    width:50px;
+    float:left;
+    margin: 30px 20px;
+}
+.media-heading-bold{
+    font-weight:bold;
+}
+#toDoList div.container{
+    border-bottom:solid;
+    border-width:.1em;
 }
