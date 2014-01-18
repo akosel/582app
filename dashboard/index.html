@@ -2,13 +2,45 @@
     <head>
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
     <script src='/preloader.js'></script>
+    <style>
+        body{padding-top:100px;},
+    </style>
+
     </head>
 
- <!--[if lt IE 7 ]><body class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><body class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><body class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><body lang="en"> <!--<![endif]-->
+ <!--[if lt IE 7 ]><body class="ie ie6" id='dashboard' lang="en"> <![endif]-->
+<!--[if IE 7 ]><body class="ie ie7" id='dashboard' lang="en"> <![endif]-->
+<!--[if IE 8 ]><body class="ie ie8" id='dashboard' lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><body id='dashboard' lang="en"> <!--<![endif]-->
     <div class='container' id='navbar'></div>
+
+    <div class='container'>
+        <div class='media'>
+            <a class="pull-left" href="#">
+                <img class="media-object" src="/img/john.jpeg" alt="pumpkinstin">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">John Pumpkinstin</h4>
+                I like to eat pumpkins.
+            </div>
+        </div>
+    </div>
+    
+    <div class='container'>
+        <div class='row'>
+
+
+            <div class='col-md-9'>
+                <h4>Activity Feed</h4>
+                <div id='activityFeed'></div>     
+            </div>
+            <div class='col-md-3'>
+                <h4>To Do</h4>
+                <div id='toDoList'></div>     
+            </div>
+        </div>
+    </div> 
+
 	
 <!-- End Document
 ================================================== -->

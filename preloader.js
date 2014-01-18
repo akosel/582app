@@ -9,8 +9,10 @@ $('head').html("    <!-- Basic: Page Needs"+
 "    <!-- CSS & JS"+
 "     ================================================== -->"+
 "    <link href='/bootstrap/css/bootstrap.min.css' rel='stylesheet'>"+
-"    <link href='/css/extra-styling.css' rel='stylesheet'>"+
 "    <link href='/css/styles.css' rel='stylesheet'>"+
+"    <link href='/css/extra-styling.css' rel='stylesheet'>"+
 "    <script src='/bootstrap/js/bootstrap.min.js'></script>"+
+"    <script src='/js/activityFeed.js'></script>"+
+"    <script src='/js/toDoList.js'></script>"+
 "    <script src='/nav/navbar.js'></script>"
 )
