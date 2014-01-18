@@ -130,7 +130,7 @@ body{
 =================*/
 #goalsPage #goalsbar { background-color: #73C7C2; height: 100px; width: 100%;
 }
-#goalsPage {
+#goalsPage .goalsButtons{ display: inline-block;
 }
 #goalsPage {
 }
