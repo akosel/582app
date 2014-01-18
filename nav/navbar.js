@@ -8,7 +8,7 @@ $('#navbar').html(
 "              <span class='icon-bar'></span>"+
 "              <span class='icon-bar'></span>"+
 "            </button>"+
-"        <a class='navbar-brand' href='#'>Mesh</a>"+
+"        <a class='navbar-brand' href='/'>Mesh</a>"+
 "        </div>"+
 "        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>"+
 "            <ul class='nav navbar-nav'>"+
@@ -17,10 +17,6 @@ $('#navbar').html(
 "                <li><a href='/goalrequests'>Goal Requests</a></li>"+
 "                <li><a href='/missedgoals'>Missed Goals</a></li>"+
 "                <li><a href='/todo'>To Do</a></li>"+
-"                <li><a href='/completedgoals'>Completed Goals</a></li>"+
-"            </ul>"+
-"            <ul class='nav navbar-nav navbar-right' id='back'>"+
-"                <li><a href='/'>Back</a></li>"+
 "            </ul>"+
 "        </div><!-- /.navbar-collapse -->"+
 "    </nav>"
