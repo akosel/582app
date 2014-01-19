@@ -140,7 +140,9 @@ textarea.form-control{
     opacity:.8;
 }
 
-
+.navbar-nav#back{
+	margin-right:10px;
+}
 
 @font-face {
   font-family: 'CreteRound-Regular';
@@ -154,4 +156,66 @@ textarea.form-control{
 }
 h1,h2,h3,h4,h5,h6{
     font-family: 'CreteRound-Regular';
+}
+
+/* Goal Tree
+=================*/
+#goalTree #goalsbar,
+#newGoalPage #goalsbar { background-color: #73C7C2; /*height: 100px;*/ width: 100%; margin-top: 11px;
+}
+#goalTree .buttonWrapper, #newGoalPage .buttonWrapper { width: 1024px; margin: auto; padding: 30px 0px; position: relative;
+}
+#goalTree .goalsButton,
+#newGoalPage .goalsButton { display: inline-block; padding: 20px 0px 20px 0px;
+}
+#newGoalPage .goalsButton a { text-decoration: none
+}
+#goalTree .goalsTitle, #newGoalPage .goalsTitle { display: inline; color: #418481; padding: 0px 20px; border-right: 2px solid #3D6E6A; font-family: 'CreteRound-Regular', serif; font-weight: normal; font-size: 22px;
+}
+#newGoalPage .goalsTitle {border-right: none;
+}
+#newGoalPage .fa-chevron-left {margin-right: 20px;
+}
+#goalTree .goalsTitle:hover,
+#newGoalPage .goalsTitle:hover { color: #247671;
+}
+#goalTree .goalsCreate { background-color: #418481; display: inline-block; width: 190px; padding: 10px; position: absolute; right: 20px; top:40px;
+}
+#goalTree .goalsCreate a { text-decoration: none;  
+}
+#goalTree .goalTitle:hover { color: #247671;
+}
+#goalTree .fa-plus-circle { color: #233F3E;
+}
+#goalTree .createLabel { color: #000; display: inline; font-size: 18px; margin-left: 10px;
+}
+#goalTree .goalsCreate:hover { background-color: gray;
+}
+#goalTree .goalsCreate:hover .createLabel, #goalTree .goalsCreate:hover .fa-plus-circle { color: #fff;}
+#goalTree .active { color: #000; font-weight: bold;
+}
+#goalTree .active:hover { color: #000;}
+#goalTree .mainWrapper { width: 1024px; margin: auto; /* padding: 15px 0px; */
+}
+#goalTree .leftWrapper { width: 60%; display: inline-block;
+}
+#goalTree .rightWrapper { width: 30%; display: inline-block; vertical-align: middle; margin-top: -30px;
+}
+#goalTree .divLeft {width: 90px; height: 90px;padding: 10px 10px 0 0; background-color: #73C7C2; border-radius: 50px; display: inline-block;
+}
+#goalTree .goal { padding: 30px; border-bottom: 2px solid #CDCDCD; position: relative;
+}
+#goalTree .divRight { display: inline-block; margin-left: 50px;
+}
+#goalTree .goalEndDate { margin-left: 10px; padding-top: 11px; font-size: 17px; text-align: center;
+}
+#goalTree .addIcon { display: inline-block; margin: 0 10px;
+}
+#goalTree .friendIconDiv { width: 58px; height: 58px; border-radius: 40px; background-color: #999; display: inline-block;
+}
+#goalTree .container { width: 100%;
+}
+#goalTree .navbar { width: 1024px; margin: 0 auto;
+}
+#goalTree .friendIcon {width: 60px; height: 60px; border-radius: 40px;
 }
