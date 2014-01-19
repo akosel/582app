@@ -1,3 +1,6 @@
+@charset "UTF-8";
+/* CSS Document */
+
 .starter-template {
   padding: 90px 15px;
   /* text-align: center; */
@@ -112,7 +115,7 @@ body{
 }
 #homePage .activityTimestamp { font-size: 13px; color: #999999;
 }
-#homePage .friendIcon { width: 58px; height: 58px; border-radius: 50px;
+#homePage .friendIcon { width: 60px; height: 60px; border-radius: 50px;
 }
 #homePage h3.todoName { font-size: 17px; font-weight: bold;
 }
@@ -185,7 +188,7 @@ body{
 }
 #goalsPage .navbar { width: 1024px; margin: 0 auto;
 }
-#goalsPage .friendIcon {width: 58px; height: 58px; border-radius: 40px;
+#goalsPage .friendIcon {width: 60px; height: 60px; border-radius: 40px;
 }
 
 /* New Goal Page
@@ -202,11 +205,27 @@ body{
 }
 #newGoalPage .inviteFriend { width: 25%; display: inline-block; background-color: #eee; padding: 30px; position: absolute; right: 0; top: 0; height: 100%;
 }
-
-
-input {background-color: #fff; height: 60px; border: none; border-bottom: 1px solid #CDCDCD; width: 100%;}
-.small {width: 40%; display: inline-block;}
-#inviteFriends input { background-color: #eee;}
+#newGoalPage .button { margin-top: 40px; background-color: gray; min-width: 75px; min-height: 20px; text-align: center; padding: 5px 20px;
+}
+#newGoalPage .button:hover { background-color: #999999;}
+#newGoalPage .light { background-color: #eee; color: #797979; border: 1px solid #73C7C2;
+}
+#newGoalPage #save { background-color: #F0572F; border: 1px solid #EF4008;
+}
+#newGoalPage .light:hover { background-color: #73C7C2;  
+}
+#newGoalPage #save:hover { background-color: #EF4008;  
+}
+#newGoalPage #save h4 { color:#fff;
+}
+#newGoalPage input {background-color: #fff; height: 60px; border: none; border-bottom: 1px solid #CDCDCD; width: 100%; padding-top: 30px;
+}
+#newGoalPage .small {width: 40%; display: inline-block; margin-right: 40px
+}
+#newGoalPage #inviteFriends input { background-color: #ededed;
+}
+#newGoalPage .cushion { margin-top: 70px;
+}
 
 input::-webkit-input-placeholder { /* WebKit browsers */
     color:    #999;
@@ -221,6 +240,19 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
     color:    #999;
 }
 
+/* Background Images
+=================*/
+.largeMe { background: url(/images/pumpkinstin100x100.jpg) no-repeat;}
+.medMe { background: url(/images/pumpkinstin60x60.jpg) no-repeat;}
+.smallMe { background: url(/images/pumpkinstin40x40.jpg) no-repeat;}
+
+.medShrek { background: url(/images/shrek60x60.jpg) no-repeat;}
+.medTim { background: url(/images/timothy60x60.jpg) no-repeat;}
+
+.medJo { background: url(/images/joanna60x60.jpg) no-repeat;}
+.smallJo { background: url(/images/joanna40x40.jpg) no-repeat;}
+
+.medJayz { background: url(/images/jayz60x60.jpg) no-repeat;}
 
 /* Media Queries
 =================*/
@@ -262,4 +294,49 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   font-style: normal;
   font-weight: 700;
   src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(/fonts/DroidSans-Bold.woff) format('woff');
+}
+@font-face {
+  font-family: 'Foro-ExtraLight';
+  src: url(/fonts/Foro-XLight.eot);
+  src: url(/fonts/Foro-XLight.eot?#iefix) format('embedded-opentype'),url(/fonts/Foro-XLight.woff) format('woff'),url(/fonts/Foro-XLight.ttf) format('truetype');
+}
+@font-face {
+  font-family: proxima-nova-reg;
+    src: url('proximanova-regular-webfont.eot');
+    src: url('proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('proximanova-regular-webfont.woff') format('woff'),
+         url('proximanova-regular-webfont.ttf') format('truetype'),
+         url('proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: proxima-nova-semibold;
+    src: url('proximanova-semibold-webfont.eot');
+    src: url('proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('proximanova-semibold-webfont.woff') format('woff'),
+         url('proximanova-semibold-webfont.ttf') format('truetype'),
+         url('proximanova-semibold-webfont.svg#proxima_nova_ltbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+  font-family: proxima-nova-bold;
+  src: url('proximanova-bold-webfont.eot');
+    src: url('proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('proximanova-bold-webfont.woff') format('woff'),
+         url('proximanova-bold-webfont.ttf') format('truetype'),
+         url('proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: proxima-nova-extrabold;
+    src: url('proximanova-extrabld-webfont.eot');
+    src: url('proximanova-extrabld-webfont.eot?#iefix') format('embedded-opentype'),
+         url('proximanova-extrabld-webfont.woff') format('woff'),
+         url('proximanova-extrabld-webfont.ttf') format('truetype'),
+         url('proximanova-extrabld-webfont.svg#proxima_nova_thbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
