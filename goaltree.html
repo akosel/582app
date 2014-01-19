@@ -3,6 +3,8 @@
     <head>
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
      <script src='/static/js/preloader.js'></script>
+     <script src='/static/js/toggle.js'></script>
+     <script src='/static/js/functionHolder2.js'></script>
     </head>
 
  <!--[if lt IE 7 ]><body class="ie ie6" lang="en" id="newGoalPage"> <![endif]-->
@@ -47,8 +49,8 @@
                     </div>
                 </div>
                 <div class='goalBox'>
-                   <h4>APR 20, 2014</h4> 
-                   <h3>Run Boston Marathon</h3> 
+                   <h2>APR 20, 2014</h2> 
+                   <h1>Run Boston Marathon</h1> 
                    <p>Run all 26.2 miles of that long ass marathon</p>
                    <div id='pictureBox'>
                     <div id='gt-users-100'></div>
@@ -60,33 +62,57 @@
                 </div> 
             </div>
 
+			<div id="addtask-btn"><a href="#" id="add-task">Add Task</a></div>
+            
             <div class='task'>    
-                <div class='checkboxBox'>
+                <div id='task-checkboxBox'>
                     <div class='checkboxSide'>
                         <i class='fa fa-square fa-4x'></i>
                     </div>
                 </div>
-                <div class='leftBox'>
-                    <div class='functionBox'>
-                        <div class='functionSide'>
-                            <i class='fa fa-pencil fa-lg'></i>
-                            <i class='fa fa-trash-o fa-lg'></i>
+                <div id="task-box-wrapper">
+                    <div class='leftBox'>
+                        <div id='task-functionBox'>
+                            <div class='functionSide'>
+                                <a href="#"><i class='fa fa-pencil fa-lg'></i></a>
+                                <a href="#"><i class='fa fa-trash-o fa-lg'></i></a>
+                            </div>
                         </div>
+                        <div class='goalBox'>
+                           <h4>TASK 2 | Due Feb 1, 2014</h4> 
+                           <h3>12 mile training run</h3> 
+                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et elit.</p>
+                           
+                           <i id="unread-icon" class="fa fa-comments"></i><a href="#" class="unread">1 comments</a>
+                           <div id="comments">
+                           		<img class="comment-pic">
+                                <div class="comment-body"><h5>You</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quam ipsum, porttitor at luctus vel, tempor in ligula. Nulla pretium nunc urna, ac suscipit nibh tincidunt vitae.</p></div>
+                     		</div>
+          
+                        </div> 
                     </div>
-                    <div class='goalBox'>
-                       <h4>TASK 3 | Due Feb 1, 2014</h4> 
-                       <h3>Run Boston Marathon</h3> 
-                       <p>Run all 26.2 miles of that long ass marathon</p>
-                    </div> 
-                </div>
-                <div class='rightBox'>
-                    <p>0 people completed this task</p>
-                </div>
-            </div>
+                    <div class='rightBox'>
+                        <p>2 people completed this task</p>
+                        <img class="ppl-complete">
+                        <img class="ppl-complete">
+                    </div>
+               </div>
+	    	</div>
+            
+            <!-- -->
+         
+            <!-- -->
+        
+        
+            
+            	<div class="shape-container">
+               		<div class="rect">Today</div><div class="triangle-right"></div>
+               </div>
 
         </div> 
 
     </div>
+
 
 
 
