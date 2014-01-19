@@ -72,7 +72,7 @@ body#dashboard{
 }
 .sidefiller{
     height:100%;
-    width:65%;
+    width:60%;
     z-index:1;
     float:left;
     position:absolute;
@@ -195,7 +195,7 @@ h1,h2,h3,h4,h5,h6{
 #goalTree .active { color: #000; font-weight: bold;
 }
 #goalTree .active:hover { color: #000;}
-#goalTree .mainWrapper { width: 1024px; margin: auto; /* padding: 15px 0px; */
+#goalTree .mainWrapper { padding-top:50px;width: 1024px; margin: auto; /* padding: 15px 0px; */
 }
 #goalTree .leftWrapper { width: 60%; display: inline-block;
 }
@@ -218,4 +218,97 @@ h1,h2,h3,h4,h5,h6{
 #goalTree .navbar { width: 1024px; margin: 0 auto;
 }
 #goalTree .friendIcon {width: 60px; height: 60px; border-radius: 40px;
+}
+#goalTree .mainGoal{ 
+    text-align:center;
+    background-color:rgb(23,34,40);
+    position:relative;
+    height:300px;
+}
+#goalTree .mainGoal .goalBox{ 
+    background-color:rgb(234,234,234);
+    height:100%;
+    padding: 2em 0;
+}
+#goalTree .checkboxBox{
+    width:100px;
+    float:left;
+    height:100%;
+    position:relative;
+    background-color:rgb(23,34,40);
+}
+#goalTree .checkboxBox i{
+    position:absolute;
+    top:39%;
+    left:28%;
+    color:white;
+}
+#goalTree .mainGoal .functionBox{
+    width:100px;
+    float:right;
+    height:100%;
+}
+#goalTree .functionBox i{
+    margin:.25em;
+}
+#goalTree .checkboxSide{
+    text-align:center;
+}
+#gt-users-100{
+    border-radius:100px;
+    height:100px;
+    width:100px;
+    display:inline-block;
+    background-color:white;
+}
+#plus{
+    display:inline-block;
+    width:100px;
+    height:100px;
+}   
+#plus i{
+    position:absolute;
+    top:50%;
+    left:49.5%;
+}
+#pictureBox{
+    height:100px;
+    position:relative;
+}
+.goalContainer{
+    position:relative;
+}
+#goalTree .lineDiv{
+    z-index:0;
+    width:75%;
+    right:0;
+    border-left:solid;
+    height:150%;
+    position:absolute;
+}
+#goalTree .task{
+    z-index:2;
+    margin-top:50px;
+    height:200px;
+    width:auto;
+    background-color:rgb(112,204,201);
+}   
+#goalTree .rightBox{
+    float:right;
+    background-color:white;
+    height:90%;
+    width:30%;
+    
+}
+#goalTree .leftBox{
+    float:left;
+    background-color:white;
+    height:90%; 
+    width:60%;
+}
+
+#goalTree .task .functionBox{
+    width:70px;
+    float:right;
+    height:100%;
 }
