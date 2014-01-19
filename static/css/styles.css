@@ -9,6 +9,7 @@ body{
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #eee;
+  font-family: 'proxima-nova-semibold', Helvetica, Arial, sans-serif;
 }
 .form-signin {
   max-width: 330px;
@@ -105,7 +106,7 @@ body{
 }
 #homePage .commentBox.expand { background-color: #F58D6A; width: 265px; height: 80px;
 }
-#homePage h2.divTitle { font-size: 25px; font-family: Helvetica, Arial, sans-serif;
+#homePage h2.divTitle { font-size: 25px; font-family: 'proxima-nova-semibold', Helvetica, Arial, sans-serif;
 }
 #homePage .myIcon { width: 91px; height: 91px;
 }
@@ -154,6 +155,8 @@ body{
 }
 #goalsPage .goalsCreate a { text-decoration: none;  
 }
+#goalsPage .goalTitle { font-size: 20px;
+}
 #goalsPage .goalTitle:hover { color: #247671;
 }
 #goalsPage .fa-plus-circle { color: #233F3E;
@@ -178,7 +181,7 @@ body{
 }
 #goalsPage .divRight { display: inline-block; margin-left: 50px;
 }
-#goalsPage .goalEndDate { margin-left: 10px; padding-top: 11px; font-size: 17px; text-align: center;
+#goalsPage .goalEndDate { margin-left: 10px; padding-top: 16px; font-size: 15px; text-align: center;
 }
 #goalsPage .addIcon { display: inline-block; margin: 0 10px;
 }
