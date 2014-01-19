@@ -14,8 +14,8 @@ $('head').html("    <!-- Basic: Page Needs"+
 "	<link href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>" +
 "    <script src='/bootstrap/js/bootstrap.min.js'></script>"+
 "    <script src='/js/activityFeed.js'></script>"+
-"    <script src='/js/toDoList.js'></script>"+
 "    <script src='/nav/navbar.js'></script>"+
+"    <script src='/js/toDoList.js'></script>"+
 "    <script src='/nav/bottomnavbar.js'></script>"+
 "    <script src='/js/functionHolder.js'></script>"
 )
