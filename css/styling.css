@@ -60,13 +60,13 @@ table {
   font-family: 'CreteRound-Regular';
   font-style: normal;
   font-weight: 400;
-  src: local('CreteRound-Regular'), local('CreteRound-Regular'), url(/fonts/CreteRound-Regular.woff) format('woff');
+  src: local('CreteRound-Regular'), local('CreteRound-Regular'), url(/static/fonts/CreteRound-Regular.woff) format('woff');
 }
 
 @font-face {
   font-family: 'Foro-ExtraLight';
-  src: url(/fonts/Foro-XLight.eot);
-  src: url(/fonts/Foro-XLight.eot?#iefix) format('embedded-opentype'),url(/fonts/Foro-XLight.woff) format('woff'),url(/fonts/Foro-XLight.ttf) format('truetype');
+  src: url(/static/fonts/Foro-XLight.eot);
+  src: url(/static/fonts/Foro-XLight.eot?#iefix) format('embedded-opentype'),url(/static/fonts/Foro-XLight.woff) format('woff'),url(/static/fonts/Foro-XLight.ttf) format('truetype');
 }
 
 
