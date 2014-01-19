@@ -2,15 +2,16 @@ body#dashboard{
   padding-top: 51px;
   padding-bottom: 0px;
   background-color: #eee;
+  font-family:'CreteRound-Regular';
 }
-#dashboard .container{
+.container{
     width:100%;
 }
 #rowContainer{
     padding:0;
     margin:0;
 }
-#dashboard .navbar{
+.navbar{
     width:1024px;
     margin:0 auto;
 }
@@ -55,8 +56,10 @@ body#dashboard{
     height:100px;
 }
 .media{
-    width:1024px;
     margin:0 auto;
+}
+#profileHeader .media{
+    width:1024px;
 }
 .sidefiller{
     height:100%;
@@ -98,11 +101,49 @@ body#dashboard{
     width:50px;
     float:left;
     margin: 30px 20px;
+    color:rgb(142,69,37);
+}
+.btn-brown{
+    color:white;
+    background-color:rgb(142,69,37);
+}
+.btn-square{
+    border-radius:0;
+    border-color:rgb(142,69,37);
+    margin:.5em;
+}
+textarea.form-control{
+   background-color:rgb(243,169,134); 
+   border-color:rgb(243,169,134);
+   margin:.5em;
 }
 .media-heading-bold{
     font-weight:bold;
 }
-#toDoList div.container{
-    border-bottom:solid;
+#toDoList div.container,#activityFeed div.container{
+    border-top:solid;
     border-width:.1em;
+}
+.toDoDate{
+    color:rgb(142,69,37);
+}
+.activityFeedDate{
+    color:#333;
+    opacity:.8;
+}
+
+
+
+@font-face {
+  font-family: 'CreteRound-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('CreteRound-Regular'), local('CreteRound-Regular'), url(/fonts/CreteRound-Regular.woff) format('woff');
+}
+#wrapper{
+    margin:0 auto;
+    height:100%;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'CreteRound-Regular';
 }

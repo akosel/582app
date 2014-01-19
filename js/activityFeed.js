@@ -9,6 +9,7 @@ $('#activityFeed').append(
 "            <div class='media-body'>"+
 "                <h4 class='media-heading media-heading-bold'>John Pumpkinstin</h4>"+
 "                I like to eat pumpkins."+
+"                <h5 class='activityFeedDate'>January 18th, 2014</h5>"+
 "            </div>"+
 "        </div>"+
 "    </div>"

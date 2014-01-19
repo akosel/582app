@@ -16,5 +16,6 @@ $('head').html("    <!-- Basic: Page Needs"+
 "    <script src='/js/activityFeed.js'></script>"+
 "    <script src='/js/toDoList.js'></script>"+
 "    <script src='/nav/navbar.js'></script>"+
-"    <script src='/nav/bottomnavbar.js'></script>"
+"    <script src='/nav/bottomnavbar.js'></script>"+
+"    <script src='/js/functionHolder.js'></script>"
 )

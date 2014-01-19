@@ -3,12 +3,10 @@ for(i = 0; i < 5; i++){
 $('#toDoList').append(
 "    <div class='container'>"+
 "        <div class='media'>"+
-"            <a class='pull-left' href='#'>"+
-"                <i class='fa-media-object fa fa-square-o fa-4x'></i>"+
-"            </a>"+
+"                <i class='fa-media-object fa fa-square-o fa-4x' id='toDoItem"+ i + "' ></i>"+
 "            <div class='media-body'>"+
-"                 <h5>February 1, 2014</h5>"+
-"                <h4 class='media-heading'>Run "+ Math.ceil(Math.random()*10)  +"</h4>"+
+"                 <h5 class='toDoDate'>February 1, 2014</h5>"+
+"                <h4 class='media-heading media-heading-bold'>Run "+ Math.ceil(Math.random()*10)  +"</h4>"+
 "                Part of my training program"+
 "            </div>"+
 "        </div>"+
