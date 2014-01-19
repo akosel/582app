@@ -7,14 +7,14 @@ $('head').html("    <!-- Basic: Page Needs"+
 "    <link href='/static/icons/favicon.ico' rel='icon' type='image/x-icon' />"+
 "    <!-- CSS & JS"+
 "     ================================================== -->"+
-"    <link href='/bootstrap/css/bootstrap.min.css' rel='stylesheet'>"+
-"    <link href='/css/styles.css' rel='stylesheet'>"+
-"    <link href='/css/extra-styling.css' rel='stylesheet'>"+
+"    <link href='/static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>"+
+"    <link href='/static/css/styles.css' rel='stylesheet'>"+
+"    <link href='/static/css/extra-styling.css' rel='stylesheet'>"+
 "	<link href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>" +
-"    <script src='/bootstrap/js/bootstrap.min.js'></script>"+
-"    <script src='/js/activityFeed.js'></script>"+
-"    <script src='/nav/navbar.js'></script>"+
-"    <script src='/js/toDoList.js'></script>"+
-"    <script src='/nav/bottomnavbar.js'></script>"+
-"    <script src='/js/functionHolder.js'></script>"
+"    <script src='/static/bootstrap/js/bootstrap.min.js'></script>"+
+"    <script src='/static/js/activityFeed.js'></script>"+
+"    <script src='/static/js/nav/navbar.js'></script>"+
+"    <script src='/static/js/toDoList.js'></script>"+
+"    <script src='/static/js/nav/bottomnavbar.js'></script>"+
+"    <script src='/static/js/functionHolder.js'></script>"
 )

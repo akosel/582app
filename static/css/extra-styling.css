@@ -148,7 +148,7 @@ textarea.form-control{
   font-family: 'CreteRound-Regular';
   font-style: normal;
   font-weight: 400;
-  src: local('CreteRound-Regular'), local('CreteRound-Regular'), url(/fonts/CreteRound-Regular.woff) format('woff');
+  src: local('CreteRound-Regular'), local('CreteRound-Regular'), url(/static/fonts/CreteRound-Regular.woff) format('woff');
 }
 #wrapper{
     margin:0 auto;

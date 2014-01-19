@@ -281,62 +281,62 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   font-family: 'CreteRound-Regular';
   font-style: normal;
   font-weight: 400;
-  src: local('CreteRound-Regular'), local('CreteRound-Regular'), url(/fonts/CreteRound-Regular.woff) format('woff');
+  src: local('CreteRound-Regular'), local('CreteRound-Regular'), url(/static/fonts/CreteRound-Regular.woff) format('woff');
 }
 @font-face {
   font-family: 'Droid Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Droid Sans'), local('DroidSans'), url(/fonts/DroidSans.woff) format('woff');
+  src: local('Droid Sans'), local('DroidSans'), url(/static/fonts/DroidSans.woff) format('woff');
 }
 @font-face {
   font-family: 'Droid Sans';
   font-style: normal;
   font-weight: 700;
-  src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(/fonts/DroidSans-Bold.woff) format('woff');
+  src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(/static/fonts/DroidSans-Bold.woff) format('woff');
 }
 @font-face {
   font-family: 'Foro-ExtraLight';
-  src: url(/fonts/Foro-XLight.eot);
-  src: url(/fonts/Foro-XLight.eot?#iefix) format('embedded-opentype'),url(/fonts/Foro-XLight.woff) format('woff'),url(/fonts/Foro-XLight.ttf) format('truetype');
+  src: url(/static/fonts/Foro-XLight.eot);
+  src: url(/static/fonts/Foro-XLight.eot?#iefix) format('embedded-opentype'),url(/static/fonts/Foro-XLight.woff) format('woff'),url(/static/fonts/Foro-XLight.ttf) format('truetype');
 }
 @font-face {
   font-family: proxima-nova-reg;
-    src: url('proximanova-regular-webfont.eot');
-    src: url('proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('proximanova-regular-webfont.woff') format('woff'),
-         url('proximanova-regular-webfont.ttf') format('truetype'),
-         url('proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+    src: url('/static/fonts/proximanova-regular-webfont.eot');
+    src: url('/static/fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/proximanova-regular-webfont.woff') format('woff'),
+         url('/static/fonts/proximanova-regular-webfont.ttf') format('truetype'),
+         url('/static/fonts/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: proxima-nova-semibold;
-    src: url('proximanova-semibold-webfont.eot');
-    src: url('proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('proximanova-semibold-webfont.woff') format('woff'),
-         url('proximanova-semibold-webfont.ttf') format('truetype'),
-         url('proximanova-semibold-webfont.svg#proxima_nova_ltbold') format('svg');
+    src: url('/static/fonts/proximanova-semibold-webfont.eot');
+    src: url('/static/fonts/proximanova-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/proximanova-semibold-webfont.woff') format('woff'),
+         url('/static/fonts/proximanova-semibold-webfont.ttf') format('truetype'),
+         url('/static/fonts/proximanova-semibold-webfont.svg#proxima_nova_ltbold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
   font-family: proxima-nova-bold;
-  src: url('proximanova-bold-webfont.eot');
-    src: url('proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('proximanova-bold-webfont.woff') format('woff'),
-         url('proximanova-bold-webfont.ttf') format('truetype'),
-         url('proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+  src: url('/static/fonts/proximanova-bold-webfont.eot');
+    src: url('/static/fonts/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/proximanova-bold-webfont.woff') format('woff'),
+         url('/static/fonts/proximanova-bold-webfont.ttf') format('truetype'),
+         url('/static/fonts/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: proxima-nova-extrabold;
-    src: url('proximanova-extrabld-webfont.eot');
-    src: url('proximanova-extrabld-webfont.eot?#iefix') format('embedded-opentype'),
-         url('proximanova-extrabld-webfont.woff') format('woff'),
-         url('proximanova-extrabld-webfont.ttf') format('truetype'),
-         url('proximanova-extrabld-webfont.svg#proxima_nova_thbold') format('svg');
+    src: url('/static/fonts/proximanova-extrabld-webfont.eot');
+    src: url('/static/fonts/proximanova-extrabld-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/proximanova-extrabld-webfont.woff') format('woff'),
+         url('/static/fonts/proximanova-extrabld-webfont.ttf') format('truetype'),
+         url('/static/fonts/proximanova-extrabld-webfont.svg#proxima_nova_thbold') format('svg');
     font-weight: normal;
     font-style: normal;
 }
