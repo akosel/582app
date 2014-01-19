@@ -128,15 +128,28 @@ body{
 
 /* Goals Page
 =================*/
-#goalsPage #goalsbar { background-color: #73C7C2; /*height: 100px;*/ width: 100%; margin-top: 11px;
+#goalsPage #goalsbar,
+#newGoalPage #goalsbar { background-color: #73C7C2; /*height: 100px;*/ width: 100%; margin-top: 11px;
 }
-#goalsPage .goalsButton { display: inline-block; padding: 20px 0px 20px 0px;
+#goalsPage .buttonWrapper, #newGoalPage .buttonWrapper { width: 1024px; margin: auto; padding: 30px 0px; position: relative;
 }
-#goalsPage .goalsTitle { display: inline; color: #418481; padding: 0px 20px; border-right: 2px solid #3D6E6A; font-family: 'CreteRound-Regular', serif; font-weight: normal; font-size: 22px;
+#goalsPage .goalsButton,
+#newGoalPage .goalsButton { display: inline-block; padding: 20px 0px 20px 0px;
 }
-#goalsPage .goalsTitle:hover { color: #247671;
+#newGoalPage .goalsButton a { text-decoration: none
 }
-#goalsPage .goalsCreate { background-color: #418481; display: inline-block; width: 150px; padding: 10px; position: absolute; right: 20px; top:40px;
+#goalsPage .goalsTitle, #newGoalPage .goalsTitle { display: inline; color: #418481; padding: 0px 20px; border-right: 2px solid #3D6E6A; font-family: 'CreteRound-Regular', serif; font-weight: normal; font-size: 22px;
+}
+#newGoalPage .goalsTitle {border-right: none;
+}
+#newGoalPage .fa-chevron-left {margin-right: 20px;
+}
+#goalsPage .goalsTitle:hover,
+#newGoalPage .goalsTitle:hover { color: #247671;
+}
+#goalsPage .goalsCreate { background-color: #418481; display: inline-block; width: 190px; padding: 10px; position: absolute; right: 20px; top:40px;
+}
+#goalsPage .goalsCreate a { text-decoration: none;  
 }
 #goalsPage .goalTitle:hover { color: #247671;
 }
@@ -144,13 +157,12 @@ body{
 }
 #goalsPage .createLabel { color: #000; display: inline; font-size: 18px; margin-left: 10px;
 }
-#goalsPage .goalsCreate:hover { background-color: gray;}
+#goalsPage .goalsCreate:hover { background-color: gray;
+}
 #goalsPage .goalsCreate:hover .createLabel, #goalsPage .goalsCreate:hover .fa-plus-circle { color: #fff;}
 #goalsPage .active { color: #000; font-weight: bold;
 }
 #goalsPage .active:hover { color: #000;}
-#goalsPage .buttonWrapper { width: 1024px; margin: auto; padding: 30px 0px; position: relative;
-}
 #goalsPage .mainWrapper { width: 1024px; margin: auto; /* padding: 15px 0px; */
 }
 #goalsPage .leftWrapper { width: 60%; display: inline-block;
@@ -176,6 +188,38 @@ body{
 #goalsPage .friendIcon {width: 58px; height: 58px; border-radius: 40px;
 }
 
+/* New Goal Page
+=================*/
+#newGoalPage {background-color: #fff;
+}
+#newGoalPage .container { width: 100%;
+}
+#newGoalPage .navbar { width: 1024px; margin: 0 auto;
+}
+#newGoalPage .mainWrapper { width: 1024px; margin: 0 auto; position: relative;
+}
+#newGoalPage .newGoalFormWrap { width: 65%; display: inline-block; margin-top: 30px;
+}
+#newGoalPage .inviteFriend { width: 25%; display: inline-block; background-color: #eee; padding: 30px; position: absolute; right: 0; top: 0; height: 100%;
+}
+
+
+input {background-color: #fff; height: 60px; border: none; border-bottom: 1px solid #CDCDCD; width: 100%;}
+.small {width: 40%; display: inline-block;}
+#inviteFriends input { background-color: #eee;}
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #999;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #999;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #999;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #999;
+}
 
 
 /* Media Queries
