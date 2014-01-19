@@ -218,27 +218,16 @@ body{
 }
 #newGoalPage #save h4 { color:#fff;
 }
-#newGoalPage input {background-color: #fff; height: 60px; border: none; border-bottom: 1px solid #CDCDCD; width: 100%; padding-top: 30px;
+#newGoalPage input {background-color: #fff; height: 60px; border: none; border-bottom: 1px solid #CDCDCD; width: 96%; padding-top: 30px;
 }
-#newGoalPage .small {width: 40%; display: inline-block; margin-right: 40px
+#newGoalPage .fa-asterisk {color: #F0572F; font-size: 8px; vertical-align: middle; margin-top: -4px;}
+#newGoalPage .small {width: 30%; display: inline-block; margin-right: 40px
 }
-#newGoalPage #inviteFriends input { background-color: #ededed;
+#newGoalPage #inviteFriends input, #newGoalPage textarea { background-color: #ededed; border: none; border-bottom: 1px solid #CDCDCD; border-right: 1px solid #CDCDCD; width: 96%;
 }
 #newGoalPage .cushion { margin-top: 70px;
 }
-
-input::-webkit-input-placeholder { /* WebKit browsers */
-    color:    #999;
-}
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    #999;
-}
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    #999;
-}
-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color:    #999;
-}
+#newGoalPage .grayDivide { width: 100%; background-color: #eee; height: 5px; margin-top: 30px}
 
 /* Background Images
 =================*/
