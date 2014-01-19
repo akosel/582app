@@ -10,7 +10,7 @@ $('head').html("    <!-- Basic: Page Needs"+
 "    <link href='/static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>"+
 "    <link href='/static/css/styles.css' rel='stylesheet'>"+
 "    <link href='/static/css/extra-styling.css' rel='stylesheet'>"+
-"	<link href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>" +
+"	 <link href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>" +
 "    <script src='/static/bootstrap/js/bootstrap.min.js'></script>"+
 "    <script src='/static/js/activityFeed.js'></script>"+
 "    <script src='/static/js/nav/navbar.js'></script>"+
