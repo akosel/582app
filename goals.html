@@ -13,14 +13,11 @@
 	<!-- <div class='starter-template'> -->
 		<div class='wrapper' id='goalsbar'>
 			<div class="buttonWrapper">
-				<div class="goalsButton">
+				<div class="goalsButton" id="myGoals">
 					<h3 class="goalsTitle active">My Goals</h3>
 				</div>
-				<div class="goalsButton">
+				<div class="goalsButton" id="completedGoals">
 					<h3 class="goalsTitle">Completed Goals</h3>
-				</div>
-				<div class="goalsButton">
-					<h3 class="goalsTitle">Missed Goals</h3>
 				</div>
 				<div class="goalsCreate">
 					<a href="newgoal.html"><i class="fa fa-plus-circle"></i><p class="createLabel">Create New Goal</p></a>
@@ -28,29 +25,33 @@
 			</div>
 		</div>
 		<div class='mainWrapper'>
-			<div class="goal">
+<!-- 			<div class="goal">
 				<div class="leftWrapper">
 					<div class="divLeft">
-						<p class="goalEndDate">FEB 15 2014</p>
+						<p class="goalEndDate">[[end date place]]</p>
 					</div>
 					<div class="divRight">
-						<h4 class="goalTitle">Run Boston Marathon</h4>
-						<p class="goalDescription">Run all 26 miles of that long ass race in Boston</p>
+						<h4 class="goalTitle">[[goal title place]]</h4>
+						<p class="goalDescription">[[goal descripation place]]</p>
 					</div>
 				</div>
 				<div class="rightWrapper">
 					<div class="friendIconDiv">
-						<img class="friendIcon medMe">
+						<img class="friendIcon">
 					</div>
+
+					
 					<div class="addIcon">
 						<i class="fa fa-plus"></i>
 					</div>
 					<div class="friendIconDiv">
-						<img class="friendIcon medJo">
+						<img class="friendIcon">
 					</div>
+					
 				</div>
-			</div>
+			</div> -->
 
+<!--  hard coded example	
 			<div class="goal">
 				<div class="leftWrapper">
 					<div class="divLeft">
@@ -78,34 +79,209 @@
 						<img class="friendIcon medTim">
 					</div>
 				</div>
-			</div>
+			</div> -->
 
-			<div class="goal">
-				<div class="leftWrapper">
-					<div class="divLeft">
-						<p class="goalEndDate">FEB 15 2014</p>
-					</div>
-					<div class="divRight">
-						<h4 class="goalTitle">Run Boston Marathon</h4>
-						<p>Run all 26 miles of that long ass race in Boston</p>
-					</div>
-				</div>
-				<div class="rightWrapper">
-					<div class="friendIconDiv">
-						<img class="friendIcon medMe">
-					</div>
-					<div class="addIcon">
-						<i class="fa fa-plus"></i>
-					</div>
-					<div class="friendIconDiv">
-						<img class="friendIcon medJayz">
-					</div>
-				</div>
-			</div>
 
 		</div>
 	<!-- </div> -->
 <!-- End Document
 ================================================== -->
+<script>
+
+	// var goals = 0;
+	var jsonf = [{
+		"gTitle":"Run Marathon",
+		"gDesc":"cause its fun running 26 miles",
+		"sDate":"Jan 1 2014",
+		"eDate":"Feb 15 2014",
+		"users":[{ 
+			"name" : "Jonathan",
+			"image" : "/static/images/pumpkinstin60x60.jpg",
+		}, {
+			"name" : "Joanna",
+			"image" : "/static/images/joanna60x60.jpg",
+		}],
+		"tasks" : [ 
+		   {
+		       "name" : "Joanna",
+		       "people" : [ 
+		           "joanna@gmail.com"
+		       ],
+		       "completed" : [],
+		       "comments" : [ 
+		           {
+		               "Date" : "Jan 19 2014",
+		               "Name" : "Joanna",
+		               "Post:" : "best comment ever!",
+		           },
+		       ],
+		       "taskName" : "Run around the lake",
+		       "duedate" : "Jan 21 2014",
+		       "description" : "it's a good training location",
+		   },
+   		],
+   		"completed" : [{
+			"name" : "Joanna",
+			"image" : "/static/images/joanna60x60.jpg",
+		}],
+	}, {
+		"gTitle":"Watch Mad Men Season 5",
+		"gDesc":"Don Draper, 'nuff said",
+		"sDate":"Feb 28 2014",
+		"eDate":"Mar 15 2014",
+		"users":[{ 
+			"name" : "Jonathan",
+			"image" : "/static/images/pumpkinstin60x60.jpg",
+		}, {
+			"name" : "Shrek",
+			"image" : "/static/images/shrek60x60.jpg",
+		}],
+		"tasks" : [ 
+		   {
+		       "name" : "Jonathan",
+		       "people" : [ 
+		           "jonathan@gmail.com"
+		       ],
+		       "completed" : [],
+		       "comments" : [ 
+		           {
+		               "Date" : "Jan 18 2014",
+		               "Name" : "Shrek",
+		               "Post:" : "best comment ever!",
+		           },
+		       ],
+		       "taskName": "do something",
+		       "duedate" : "that day",
+		       "description" : "never a better day",
+		   },
+   		],
+   		"completed" : [{
+			"name" : "Jonathan",
+			"image" : "/static/images/pumpkinstin60x60.jpg",
+		}],
+	}];
+
+	function addGoals ( jsonData ) {
+
+		// pdata = JSON.parse(jsonData);
+		pdata = jsonData;
+
+		numGoals = pdata.length;
+		console.log(numGoals);
+		console.log(pdata);
+
+		//iterate through entire goals to filter through completed, missed, and active
+		for (g = 0; g < numGoals; g++) {
+
+			var me = {"name":"Jonathan", "image":"/static/images/pumpkinstin60x60.jpg"};
+			//to be replaced with data fetch from /me server
+
+			//find out who has completed this goal
+			for (c = 0; c < pdata[g].completed.length; c++) {
+				if (pdata[g].completed[c].name === me.name) {
+					console.log("match found in goal completion");
+					$('.mainWrapper').append('<div class="goal complete hide">'+
+'							<div class="leftWrapper">'+
+'								<div class="divLeft">'+
+'									<p class="goalEndDate">'+pdata[g].eDate+'</p>'+
+'								</div>'+
+'								<div class="divRight">'+
+'									<h4 class="goalTitle">'+pdata[g].gTitle+'</h4>'+
+'									<p class="goalDescription">'+pdata[g].gDesc+ '</p>'+
+'								</div>'+
+'							</div>'+
+'							<div class="rightWrapper">'+
+'								<div class="friendIconDiv">'+
+'									<img src="'+me.image+
+'" class="friendIcon">'+
+'								</div>'+
+'							</div>'+
+'						</div>'+
+'					');
+					// for (x in pdata.friends)?
+					for (u = 1; u < pdata[g].users.length; u++) {
+						$('.rightWrapper').append(' \
+							<div class="addIcon"> \
+								<i class="fa fa-plus"></i> \
+							</div> \
+							<div class="friendIconDiv"> \
+								<img src="'+pdata[g].users[u].image+'" class="friendIcon"> \
+							</div>'
+						);
+					}
+				} else {
+					console.log("match not found in goal completion");
+					$('.mainWrapper').append('<div class="goal">'+
+'							<div class="leftWrapper">'+
+'								<div class="divLeft">'+
+'									<p class="goalEndDate">'+pdata[g].eDate+'</p>'+
+'								</div>'+
+'								<div class="divRight">'+
+'									<h4 class="goalTitle">'+pdata[g].gTitle+'</h4>'+
+'									<p class="goalDescription">'+pdata[g].gDesc+ '</p>'+
+'								</div>'+
+'							</div>'+
+'							<div class="rightWrapper">'+
+'								<div class="friendIconDiv">'+
+'									<img src="'+me.image+
+'" class="friendIcon">'+
+'								</div>'+
+'							</div>'+
+'						</div>'+
+'					');
+					// for (x in pdata.friends)?
+					for (u = 1; u < pdata[g].users.length; u++) {
+						$('.rightWrapper').append(' \
+							<div class="addIcon"> \
+								<i class="fa fa-plus"></i> \
+							</div> \
+							<div class="friendIconDiv"> \
+								<img src="'+pdata[g].users[u].image+'" class="friendIcon"> \
+							</div>'
+						);
+					}
+				} //end if/else statement
+			} // end for that is checking for membership
+
+		}; //end for loop that iterates through goals
+	}; // end function
+
+
+addGoals( jsonf );
+
+$('.goalsButton').on('click', function(){
+	console.log(this);
+	if ($(this).prop('id') =='completedGoals') {
+		$('.goal').addClass('hide');
+		$('.complete').removeClass('hide');
+		$('#myGoals').removeClass('active').children().removeClass('active');
+		$(this).addClass('active').children().addClass('active');
+	}if ($(this).prop('id') == 'myGoals') {
+		$('.goal').removeClass('hide');
+		$('.complete').addClass('hide');
+		$('#completedGoals').removeClass('active').children().removeClass('active');
+		$(this).addClass('active').children().addClass('active');
+	} else {
+		//do nothing
+	}
+})
+
+// onload?
+// $.ajax({
+// 		  type: "get",
+// 		  url: "#",
+// 		  dataType: 'json',
+// 		}).done(function( json ) 
+// 			jsond = json;
+// 		    addGoals( jsond );
+// 		  });
+// 	});
+
+
+
+
+
+
+</script>
 </body>
 </html>
