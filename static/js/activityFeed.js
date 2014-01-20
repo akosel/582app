@@ -1,15 +1,19 @@
-addPeople = function(){
-for(i = 0; i < 5; i++){
+addPeople = function(d){
+d.sort(function(a,b){
+    console.log(a,b);
+    return  b['date']['$date']+a['date']['$date'];
+})
+for(item in d){
 $('#activityFeed').append(
 "    <div class='container'>"+
 "        <div class='media'>"+
 "            <a class='pull-left' href='#'>"+
-"                <div class='media-object' alt='pumpkinstin'></div>"+
+"                <img class='media-object' src=" + d[item]['picture'] +"></img>"+
 "            </a>"+
 "            <div class='media-body'>"+
-"                <h4 class='media-heading media-heading-bold'>John Pumpkinstin</h4>"+
-"                I like to eat pumpkins."+
-"                <h5 class='activityFeedDate'>January 18th, 2014</h5>"+
+"                <h4 class='media-heading media-heading-bold'>"+d[item]['name'] + "</h4>"+
+d[item]['message'] +
+"                <h5 class='activityFeedDate'>"+ new Date(d[item]['date']['$date']) + "</h5>"+
 "            </div>"+
 "        </div>"+
 "    </div>"
@@ -17,5 +21,4 @@ $('#activityFeed').append(
 }
 }
 $(document).ready(function(){
-    addPeople();
 })

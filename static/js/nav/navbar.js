@@ -12,7 +12,7 @@ $('#navbar').html(
 "        </div>"+
 "        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>"+
 "            <ul class='nav navbar-nav'>"+
-"                <li><a href='/dash'>Dashboard</a></li>"+
+"                <li><a href='/'>Dashboard</a></li>"+
 "                <li><a href='/goals'>Goals</a></li>"+
 "                <li><a href='/friends'>Friends</a></li>"+
 "            </ul>"+

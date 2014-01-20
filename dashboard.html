@@ -14,11 +14,10 @@
     <div class='container' id='profileHeader'>
         <div class='media'>
             <a class="pull-left" href="#">
-                <div class="media-object" alt="pumpkinstin"></div>
+		<img id="propic" class="media-object" alt="pumpkinstin"/>
             </a>
             <div class="media-body">
-                <h4 class="media-heading">John Pumpkinstin</h4>
-                I like to eat pumpkins.
+                <h4 id="name" class="media-heading">John Pumpkinstin</h4>
             </div>
         </div>
     </div>
@@ -45,4 +44,14 @@
 <!-- End Document
 ================================================== -->
 </body>
+<script>
+$.get("/me", 
+    function(data) { 
+        d = JSON.parse(data); 
+        $("#propic").attr("src",d.image);$("#name").text(d.name);  
+        console.log('done loading data'); 
+        addPeople(d.newsfeed); 
+    })
+    
+</script>
 </html>
