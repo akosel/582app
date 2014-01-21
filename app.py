@@ -25,7 +25,7 @@ def addGoal(name,desc,end,taskArr,start="",pplArr=[]):
     goal = {"name": name, "desc": desc, "people" : pplArr, "start": start, "end": end, "tasks": taskArr, "completed": []}
     goals = db.goals
     goal_id = goals.insert(goal)
-    return dumps(goal)
+    print goal
 
 def addUser(username, name, picture):
     user ={"username": username, "name": name, "picture": picture, "friends": [], "friendrequest": [], "feed": [] }
@@ -58,15 +58,16 @@ def acceptFriendRequest(friend):
         tryuser['friends'].append(friend)
         tryuser['feed'].append({'message':frienduser['name'] + ' is now your friend!','name':frienduser['name'],'picture':frienduser['picture'],'date':datetime.datetime.now(),'type':'acceptfriend'})       
         db.users.save(tryuser);
-    tryuser = db.users.find_one({"username":friend})
-    if(tryuser):
-        tryuser['friends'].append(session['email'])
+    if(frienduser):
+        tryuser['friends'].append(session['email']) 
+        tryuser['feed'] = [d for d in tryuser['feed'] if d.get('name') != frienduser['name'] or d.get('type') != 'friendrequest']
+        print tryuser['feed'],tryuser['name']
         db.users.save(tryuser);
 
 def getNewsFeed():
     tryuser = db.users.find_one({"username":session['email']})
     if(tryuser):
-            return json.dumps(tryuser['feed'])
+            return dumps(tryuser['feed'])
 
 def getFriendRequests():
     tryuser = db.users.find_one({"username":session['email']})
@@ -176,8 +177,8 @@ def acceptfriendreq(username):
     return dashboard
 
 
-@app.route('/viewfriendrequests')
-def viewfriendrequests():
+@app.route('/getfriendrequests')
+def getfriendrequests():
     return getFriendRequests() 
  
 @app.route('/me')
@@ -196,6 +197,11 @@ def getgoals():
     trygoal = db.goals.find()
     return dumps(trygoal,default=json_util.default)
 
+@app.route('/getusers')
+def getusers():
+    users = db.users.find()
+    return dumps(users,default=json_util.default)
+
 @app.route('/newsfeed')
 def newsfeed():
     return getNewsFeed()
@@ -208,15 +214,34 @@ def addtask():
 
 @app.route('/addgoal')
 def addgoal():
-    return addGoal('Run Marathon','Run that marathon',datetime.datetime.now()+datetime.timedelta(days=1),[])
+    addGoal('Run Marathon','Run that marathon',datetime.datetime.now()+datetime.timedelta(days=1),[])
+    return ""
     
 @app.route('/getfriends')
 def getfriends():
     tryuser = db.users.find_one({"username":session['email']})
     if(tryuser): 
-            obj = {}
-            obj['friends'] = tryuser['friends']
-    return json.dumps(obj)
+        obj = {}
+        obj['friends'] = tryuser['friends']
+        return json.dumps(obj)
+    else:
+        return json.dumps({'error':'no username found'})
+
+@app.route('/purgenewsfeed')
+def purgefeed():
+    tryuser = db.users.find_one({'username':session['email']})
+    if(tryuser):
+        tryuser['feed'] = []
+        db.users.save(tryuser) 
+        return dumps(tryuser)
+
+@app.route('/purgefriends')
+def purgefriends():
+    tryuser = db.users.find_one({'username':session['email']})
+    if(tryuser):
+        tryuser['friendrequest'] = []
+        db.users.save(tryuser) 
+        return dumps(tryuser)
  
 
 @app.route('/login')
@@ -245,18 +270,17 @@ def callback():
         # Step 3
         access_token = r.json()['access_token']
         r = requests.get(profile_uri, params={'access_token': access_token})
-    print r.json()
-    tryuser = db.users.find_one({"username": r.json()['email']})
-    pic = ' ';
-    print r.json()
-    if('picture' in r.json()):
-        pic = r.json()['picture']
-        session['picture'] = pic    
-        if tryuser['picture'] != pic:
-            tryuser['picture'] = pic
-            db.users.save(tryuser)
-    if not tryuser:
-        addUser(r.json()['email'], r.json()['name'], pic)
+        print r.json()
+        tryuser = db.users.find_one({"username": r.json()['email']})
+        pic = ' ';
+        if('picture' in r.json()):
+            pic = r.json()['picture']
+            session['picture'] = pic    
+         #   if tryuser['picture'] != pic:
+         #      tryuser['picture'] = pic
+         #     db.users.save(tryuser)
+        if not tryuser:
+            addUser(r.json()['email'], r.json()['name'], pic)
         session['email'] = r.json()['email']
         session['name'] = r.json()['name']
         return redirect(url_for('index'))
