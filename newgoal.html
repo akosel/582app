@@ -116,7 +116,7 @@
 		console.log(formstring);
 	};
 
-	$('#save').on('click', function(){
+/*	$('#save').on('click', function(){
 		showValues();
 		$.ajax({
 		  type: "POST",
@@ -126,7 +126,23 @@
 		    alert( "Data Saved: " + msg );
 		  });
 	});
-
+*/
+    $('#save').on('click',function(){
+        taskArr = {};
+        for (i = 1; i <= tasks; i++){
+             taskDict = {}
+             taskDict['title'] = $('input[label=newTaskTitle' + i + ']').val();
+             taskDict['description'] = $('input[label=newTaskDescription' + i + ']').val();
+             taskDict['end'] = $('input[label=newTaskEnd' + i + ']').val();
+             taskArr['task' + i] = taskDict;
+            console.log(JSON.stringify(taskArr))
+        }
+        taskStr = JSON.stringify(taskArr)
+//TODO can't add array in url which is tricky
+        url = '/addgoal/' + $('input[name=1newGoalTitle]').val() + "/" + $('input[name=2newGoalDescription]').val() + "/" + taskStr;
+        console.log(url);
+        $.get(url);
+    });
 </script>
 
 

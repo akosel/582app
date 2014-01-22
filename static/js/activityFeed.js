@@ -19,8 +19,8 @@ d[item]['message'] +
 if ('type' in d[item]){
     if (d[item]['type'] == 'friendrequest'){
         htmlStr +=
-            "   <button id='reject' class='btn btn-warning pull-right'>Reject</button>"+
-            "   <button id='accept' class='btn btn-primary pull-right'>Accept</button>"+
+            "   <button id="+ d[item]['id']['$oid'] + " class='btn btn-warning pull-right reject'>Reject</button>"+
+            "   <button id="+ d[item]['id']['$oid'] + " class='btn btn-primary pull-right accept'>Accept</button>"+
             "    </div>"
         
         $('#activityFeed').append(htmlStr)
@@ -33,11 +33,17 @@ else{
 }
 }
 }
-$(document).on('click','button#accept',function(){
-    //TODO add username to message to help make this way easier.
-    url = '/acceptfriendreq/' + username 
+$(document).on('click','button.accept',function(){
+    console.log('click');
+    url = '/acceptfriendreq/' + $(this).attr('id')
     $.get(url)
     $(this).parent().remove(); 
     //refresh the feed
-    addPeople(d.newsfeed)
+
+    $.get("/me", 
+        function(data) { 
+            d = JSON.parse(data); 
+            console.log('done loading data'); 
+            addPeople(d.newsfeed); 
+        })
 })

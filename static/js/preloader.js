@@ -13,6 +13,7 @@ $('head').html("    <!-- Basic: Page Needs"+
 "	 <link href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>" +
 "    <script src='/static/bootstrap/js/bootstrap.min.js'></script>"+
 "    <script src='/static/js/activityFeed.js'></script>"+
+"    <script src='/static/js/d3.v3.min.js'></script>"+
 "    <script src='/static/js/nav/navbar.js'></script>"+
 "    <script src='/static/js/toDoList.js'></script>"+
 "    <script src='/static/js/nav/bottomnavbar.js'></script>"+

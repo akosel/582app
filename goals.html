@@ -89,14 +89,14 @@
 <!-- End Document
 ================================================== -->
 <script>
-
+    var format = d3.time.format("%d %b %Y")
 	// var goals = 0;
 	var jsonf = [{
-		"gTitle":"Run Marathon",
-		"gDesc":"cause its fun running 26 miles",
-		"sDate":"Jan 1 2014",
-		"eDate":"Feb 15 2014",
-		"users":[{ 
+		"name":"Run Marathon",
+		"desc":"cause its fun running 26 miles",
+		"start":"Jan 1 2014",
+		"end":"Feb 15 2014",
+		"people":[{ 
 			"name" : "Jonathan",
 			"image" : "/static/images/pumpkinstin60x60.jpg",
 		}, {
@@ -117,7 +117,7 @@
 		               "Post:" : "best comment ever!",
 		           },
 		       ],
-		       "taskName" : "Run around the lake",
+		       "name" : "Run around the lake",
 		       "duedate" : "Jan 21 2014",
 		       "description" : "it's a good training location",
 		   },
@@ -127,11 +127,11 @@
 			"image" : "/static/images/joanna60x60.jpg",
 		}],
 	}, {
-		"gTitle":"Watch Mad Men Season 5",
-		"gDesc":"Don Draper, 'nuff said",
-		"sDate":"Feb 28 2014",
-		"eDate":"Mar 15 2014",
-		"users":[{ 
+		"name":"Watch Mad Men Season 5",
+		"desc":"Don Draper, 'nuff said",
+		"start":"Feb 28 2014",
+		"end":"Mar 15 2014",
+		"people":[{ 
 			"name" : "Jonathan",
 			"image" : "/static/images/pumpkinstin60x60.jpg",
 		}, {
@@ -152,7 +152,7 @@
 		               "Post:" : "best comment ever!",
 		           },
 		       ],
-		       "taskName": "do something",
+		       "name": "do something",
 		       "duedate" : "that day",
 		       "description" : "never a better day",
 		   },
@@ -174,22 +174,21 @@
 
 		//iterate through entire goals to filter through completed, missed, and active
 		for (g = 0; g < numGoals; g++) {
-
-			var me = {"name":"Jonathan", "image":"/static/images/pumpkinstin60x60.jpg"};
+			var me = {"name":"Jonathan", "image":"/static/images/shrek60x60.jpg"};
 			//to be replaced with data fetch from /me server
 
 			//find out who has completed this goal
-			for (c = 0; c < pdata[g].completed.length; c++) {
+		/*	for (c = 0; c < pdata[g].completed.length; c++) {
 				if (pdata[g].completed[c].name === me.name) {
 					console.log("match found in goal completion");
 					$('.mainWrapper').append('<div class="goal complete hide">'+
 '							<div class="leftWrapper">'+
 '								<div class="divLeft">'+
-'									<p class="goalEndDate">'+pdata[g].eDate+'</p>'+
+'									<p class="goalEndDate">'+pdata[g].end.$date +'</p>'+
 '								</div>'+
 '								<div class="divRight">'+
-'									<h4 class="goalTitle">'+pdata[g].gTitle+'</h4>'+
-'									<p class="goalDescription">'+pdata[g].gDesc+ '</p>'+
+'									<h4 class="goalTitle">'+pdata[g].name+'</h4>'+
+'									<p class="goalDescription">'+pdata[g].desc+ '</p>'+
 '								</div>'+
 '							</div>'+
 '							<div class="rightWrapper">'+
@@ -201,26 +200,26 @@
 '						</div>'+
 '					');
 					// for (x in pdata.friends)?
-					for (u = 1; u < pdata[g].users.length; u++) {
+					for (u = 1; u < pdata[g].people.length; u++) {
 						$('.rightWrapper').append(' \
 							<div class="addIcon"> \
 								<i class="fa fa-plus"></i> \
 							</div> \
 							<div class="friendIconDiv"> \
-								<img src="'+pdata[g].users[u].image+'" class="friendIcon"> \
+								<img src="'+me.image+'" class="friendIcon"> \
 							</div>'
 						);
 					}
-				} else {
+				} else {*/
 					console.log("match not found in goal completion");
 					$('.mainWrapper').append('<div class="goal">'+
 '							<div class="leftWrapper">'+
 '								<div class="divLeft">'+
-'									<p class="goalEndDate">'+pdata[g].eDate+'</p>'+
+'									<p class="goalEndDate">'+ format(new Date(pdata[g].end.$date)) +'</p>'+
 '								</div>'+
 '								<div class="divRight">'+
-'									<h4 class="goalTitle">'+pdata[g].gTitle+'</h4>'+
-'									<p class="goalDescription">'+pdata[g].gDesc+ '</p>'+
+'									<a href="/goals/'+ pdata[g].name + '"><h4 class="goalTitle">'+pdata[g].name+'</h4></a>'+
+'									<p class="goalDescription">'+pdata[g].desc+ '</p>'+
 '								</div>'+
 '							</div>'+
 '							<div class="rightWrapper">'+
@@ -232,24 +231,22 @@
 '						</div>'+
 '					');
 					// for (x in pdata.friends)?
-					for (u = 1; u < pdata[g].users.length; u++) {
+					for (u = 1; u < pdata[g].people.length; u++) {
 						$('.rightWrapper').append(' \
 							<div class="addIcon"> \
 								<i class="fa fa-plus"></i> \
 							</div> \
 							<div class="friendIconDiv"> \
-								<img src="'+pdata[g].users[u].image+'" class="friendIcon"> \
+								<img src="'+me.image+'" class="friendIcon"> \
 							</div>'
 						);
 					}
-				} //end if/else statement
-			} // end for that is checking for membership
+			//	} //end if/else statement
+		//	} // end for that is checking for membership
 
 		}; //end for loop that iterates through goals
 	}; // end function
 
-
-addGoals( jsonf );
 
 $('.goalsButton').on('click', function(){
 	console.log(this);
@@ -279,9 +276,14 @@ $('.goalsButton').on('click', function(){
 // 		  });
 // 	});
 
+//TODO load all of the json in one page for each individual user
 
-
-
+$.get("/me", 
+    function(data) { 
+        d = JSON.parse(data); 
+        console.log('done loading data: ',d); 
+        addGoals( d.goals );
+})
 
 
 </script>
