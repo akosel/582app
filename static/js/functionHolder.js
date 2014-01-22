@@ -21,5 +21,3 @@ $(document).on('click','button.notNow',function(){
     $(this).parent().parent().parent().remove();
 })
 
-$(document).ready(function(){
-});

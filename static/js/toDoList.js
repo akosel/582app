@@ -14,6 +14,3 @@ $('#toDoList').append(
 )
 }
 }
-$(document).ready(function(){
-    addItems();
-});

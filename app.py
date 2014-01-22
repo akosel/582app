@@ -136,7 +136,12 @@ def index():
         return idx
     else:
     #print session
-        return dashboard
+        tryuser = db.users.find_one({'username':session['email']})
+        trygoals = db.goals.find({'people':session['email']})
+        me = tryuser  
+        goals = trygoals
+        print trygoals
+        return render_template('dashboard.html',me=me,goals=goals)
 #TODO change this to be more like the goaltree page (i.e. add a template for the page) 
 @app.route('/goals')
 def goals():

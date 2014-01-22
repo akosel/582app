@@ -1,3 +1,4 @@
+html{ overflow-y:scroll;}
 body#goalTree{
 	background-color:#fff;
 }
@@ -173,7 +174,7 @@ h1,h2,h3,h4,h5,h6{
 }
 #newGoalPage .goalsButton a { text-decoration: none
 }
-#goalTree .goalsTitle, #newGoalPage .goalsTitle { display: inline; color: #418481; padding: 0px 20px; border-right: 2px solid #3D6E6A; font-family: 'CreteRound-Regular', serif; font-weight: normal; font-size: 22px;
+#goalTree .goalsTitle, #newGoalPage .goalsTitle { display: inline; color: #418481; padding: 0px 20px;  font-family: 'CreteRound-Regular', serif; font-weight: normal; font-size: 22px;
 }
 #newGoalPage .goalsTitle {border-right: none;
 }
@@ -479,6 +480,8 @@ h1,h2,h3,h4,h5,h6{
 	border-radius: 20px;
 	background-color:#666;
 }
+
+#goalTree .fa-chevron-left { margin-right: 20px;
 
 #addtask-btn {
   margin: 50px auto; 
