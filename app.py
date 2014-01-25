@@ -20,9 +20,8 @@ idx = f.read();
 f = open('dashboard.html', 'r')
 dashboard = f.read();
 
-def addGoal(name,desc,end,taskArr,start="",pplArr=[]):
+def addGoal(name,desc,start,end,taskArr,pplArr=[]):
     tryuser = db.users.find_one({"username":session['email']})
-    start = datetime.datetime.now()
     pplArr = [session['email']]
     goal = {"name": name, "desc": desc, "people" : pplArr, "start": start, "end": end, "tasks": taskArr, "completed": []}
     goals = db.goals
@@ -31,7 +30,7 @@ def addGoal(name,desc,end,taskArr,start="",pplArr=[]):
         frienduser = db.users.find_one({"username":friend})
         frienduser['feed'].append({'message':session['name'] + ' just added the goal '+name,'name':session['name'],'picture':session['picture'],'date':datetime.datetime.now(),'type':'goaladd','id':tryuser['_id']})       
         db.users.save(frienduser)
-    print goal
+    return dumps(goal)
 
 def addUser(username, name, picture):
     user ={"username": username, "name": name, "picture": picture, "friends": [], "friendrequest": [], "feed": [] }
@@ -228,14 +227,14 @@ def addtask():
     return addTask(datetime.datetime.now(),session['name'],'My fun task')
 
 
-@app.route('/addgoal/<title>/<description>/<taskArr>')
-def addgoal(title,description,taskArr):
+@app.route('/addgoal/<title>/<description>/<startdate>/<enddate>/<taskArr>')
+def addgoal(title,description,startdate,enddate,taskArr):
     taskArr = json.loads(taskArr)
     myTasks = []
     print taskArr
     for task in taskArr:
         myTasks.append(addTask(taskArr[task]['end'],taskArr[task]['title'],taskArr[task]['description']))
-    addGoal(title,description,datetime.datetime.now()+datetime.timedelta(days=1),myTasks)
+    addGoal(title,description,startdate,enddate,myTasks)
     return title,description,taskArr
     
 @app.route('/getfriends')

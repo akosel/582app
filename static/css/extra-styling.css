@@ -11,6 +11,22 @@ body#dashboard{
 .container{
     width:100%;
 }
+#login-button {
+    -webkit-border-radius: 3px;
+    border-radius:3px;
+    background: #3b7140;
+    box-shadow: 0 3px 0 #213f24;
+    color: #FFF;
+    -webkit-font-smoothing: antialiased;
+    padding:20px;
+    text-decoration:none;
+    -webkit-transition: background-color 300ms ease-out;
+    -moz-transition: background-color 300ms ease-out;
+    transition: background-color 300ms ease-out;
+}
+#login-button:hover{
+    background:#6c9c76;
+}
 #rowContainer{
     padding:0;
     margin:0;
@@ -481,7 +497,7 @@ h1,h2,h3,h4,h5,h6{
 	background-color:#666;
 }
 
-#goalTree .fa-chevron-left { margin-right: 20px;
+#goalTree .fa-chevron-left { margin-right: 20px;}
 
 #addtask-btn {
   margin: 50px auto; 

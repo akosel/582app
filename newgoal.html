@@ -138,8 +138,11 @@
             console.log(JSON.stringify(taskArr))
         }
         taskStr = JSON.stringify(taskArr)
-//TODO can't add array in url which is tricky
-        url = '/addgoal/' + $('input[name=1newGoalTitle]').val() + "/" + $('input[name=2newGoalDescription]').val() + "/" + taskStr;
+        url = '/addgoal/' + $('input[name=1newGoalTitle]').val() + "/" + 
+                $('input[name=2newGoalDescription]').val() + "/" + 
+                $('input[name=3StartDate]').val() + "/" +
+                $('input[name=4EndDate]').val() + "/" +
+                taskStr;
         console.log(url);
         $.get(url);
     });
