@@ -118,8 +118,8 @@ body#dashboard{
     float:left;
     margin: 20px 0;
 }
-.media-body{
-    margin:20px 50px;
+#dashboard .media-body {
+    margin:30px 50px;
 }
 #profileHeader .media-heading{
     color:white;
@@ -177,7 +177,27 @@ textarea.form-control{
 h1,h2,h3,h4,h5,h6{
     font-family: 'CreteRound-Regular';
 }
+#dashboard .goalsCreate { display: inline-block; width: 100%; padding: 30px; position: absolute; top:40px;text-decoration:none;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 3px 0 rgb(243,140,100);
+    background-color:rgb(243,169,134); 
+    border-color:rgb(142,69,37);
+    -webkit-transition: background-color 300ms ease-out;
+    -moz-transition: background-color 300ms ease-out;
+    transition: background-color 300ms ease-out;
+}
+#dashboard .goalsCreate:hover { 
+    background-color:rgb(142,69,37);
+}
+#dashboard .goalsCreate:hover .createLabel, #dashboard .goalsCreate:hover .fa-plus-circle { color: #fff;}
 
+#dashboard .fa-plus-circle {
+    color:rgb(142,69,37);
+}
+#dashboard .createLabel { display: inline; font-size: 18px; margin-left: 10px;
+
+    color:rgb(142,69,37);
+}
 /* Goal Tree
 =================*/
 #goalTree #goalsbar,
@@ -499,26 +519,19 @@ h1,h2,h3,h4,h5,h6{
 
 #goalTree .fa-chevron-left { margin-right: 20px;}
 
-#addtask-btn {
-  margin: 50px auto; 
-  height: 150px;
-  width: 100px;
-  float: right;
-}
-
 #add-task {        
   display: block;
   width: 100px;
   height: 40px;
-  background: #999;
-  padding-top: 10px;
-  padding-left: 18px;
-  color: #fff;
+  float:right;
+  margin-top:50px;
   font-family: proxima-nova-semibold;
+  -webkit-transition: background-color 300ms ease-out;
 }
 
 #add-task:hover {
 	background-color:#333;
+    color:white;
 	text-decoration:none;
 }
 

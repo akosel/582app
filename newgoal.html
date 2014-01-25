@@ -128,23 +128,26 @@
 	});
 */
     $('#save').on('click',function(){
+        format = d3.time.format('%Y-%m-%d')
         taskArr = {};
         for (i = 1; i <= tasks; i++){
              taskDict = {}
              taskDict['title'] = $('input[label=newTaskTitle' + i + ']').val();
              taskDict['description'] = $('input[label=newTaskDescription' + i + ']').val();
-             taskDict['end'] = $('input[label=newTaskEnd' + i + ']').val();
+             taskDict['end'] = format.parse($('input[label=newTaskEnd' + i + ']').val());
              taskArr['task' + i] = taskDict;
             console.log(JSON.stringify(taskArr))
         }
         taskStr = JSON.stringify(taskArr)
         url = '/addgoal/' + $('input[name=1newGoalTitle]').val() + "/" + 
                 $('input[name=2newGoalDescription]').val() + "/" + 
-                $('input[name=3StartDate]').val() + "/" +
-                $('input[name=4EndDate]').val() + "/" +
+                format.parse($('input[name=3StartDate]').val()) + "/" +
+                format.parse($('input[name=4EndDate]').val()) + "/" +
                 taskStr;
         console.log(url);
         $.get(url);
+        alert("New Goal Added!");
+        
     });
 </script>
 

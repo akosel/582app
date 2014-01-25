@@ -41,8 +41,10 @@
                             </div>
                         </div>
                     </div>
+                {% else %}
+                    <h1>Nothing to report. Add a goal and find some friends to get started!</h1>
+                
                 {% endfor %}
-
 
             </div>
             <div id='toDoListContainer' class='col-md-4'>
@@ -61,6 +63,13 @@
                         </div>
                     </div>
                     {% endfor %}
+
+                    {% else %} 
+                    <a href="/newgoal">
+                        <div class="goalsCreate">
+                            <i class="fa fa-plus-circle"></i><p class="createLabel">Create New Goal</p>
+                        </div>
+                    </a>
                 {% endfor %}
                 </div>     
             </div>

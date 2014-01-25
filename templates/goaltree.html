@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class='goalBox'>
-                   <h2>{{ goal.end }}</h2> 
+                   <h2 id='goalEnd'></h2> 
                    <h1>{{ goal.name }}</h1> 
                    <p>{{ goal.desc }}</p>
                    <div id='pictureBox'>
@@ -60,7 +60,7 @@
                 </div> 
             </div>
 
-			<div id="addtask-btn"><a href="#add-task" id="add-task">Add Task</a></div>
+			<button class='btn btn-default' id="add-task" data-toggle='modal' data-target='#myModal'>Add Task</button>
             
             <div class='task'>    
 
@@ -83,10 +83,10 @@
                            <h3>{{ task.name }}</h3> 
                            <p>{{ task.description }}</p>
                            
-                           <i id="unread-icon" class="fa fa-comments"></i><a href="#comments" class="unread">{{ task.comments|length }} comment(s)</a>
+                           <i id="unread-icon" class="fa fa-comments"></i><a href="#task-box-wrapper" class="unread">{{ task.comments|length }} comment(s)</a>
                            <div id="comments">
                                 {% for comment in task.comments %}
-                           		<img class="comment-pic">
+                           		<img class="comment-pic"></img>
                                 <div class="comment-body"><h5>{{comment.person}}</h5><p>{{comment.text}}</p></div>
                                 {% endfor %}
                      		</div>
@@ -116,6 +116,33 @@
         </div> 
 
     </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add a new task</h4>
+      </div>
+      <div class="modal-body">
+			<div class='newTaskWrap'>
+				
+					<input type="text" label="newTaskTitle1" placeholder="Task 1 Title" name="5Task1">
+					</input>
+					<input type="text" label="newTaskDescription1" placeholder="Task Description" name="6Task1Desc">
+					</input>
+					<em>Due Date </em><input type="date" label="newTaskEnd1" class="small" placeholder="Due Date" name="7DueDate1">
+					</input>
+				<!-- </form> -->
+			</div>  <!-- end newTaskWrap -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
+        <button type="button" class="btn btn-primary" id="addtask">Add Task</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
@@ -123,4 +150,34 @@
     <!-- End Document
 ================================================== -->
 </body>
+<script>
+    //hacky workaround to format date string to date object and then to the proper format
+    format = d3.time.format('%Y-%m-%d');
+    console.log({{ goal.tasks|tojson|safe }});
+    $('#goalEnd').html(format(new Date({{ goal.end|tojson|safe }})));
+    
+    $('#addtask-btn').on('click', function(){
+        console.log('click');
+        
+    })
+
+    $('#addtask').on('click', function(){
+        tasks = 1; //in this case we only add one...
+        format = d3.time.format('%Y-%m-%d')
+        taskArr = {};
+        for (i = 1; i <= tasks; i++){
+             taskDict = {}
+             taskDict['title'] = $('input[label=newTaskTitle' + i + ']').val();
+             taskDict['description'] = $('input[label=newTaskDescription' + i + ']').val();
+             taskDict['end'] = format.parse($('input[label=newTaskEnd' + i + ']').val());
+             taskArr['task' + i] = taskDict;
+            console.log(JSON.stringify(taskArr))
+        }
+        taskStr = JSON.stringify(taskArr)
+        url = '/addtask/' + {{ goal.name|tojson|safe }} + '/' + taskDict['end'] + '/' + taskDict['title'] + '/' + taskDict['description'];
+        console.log(url);
+        $.get(url);
+        alert("Task Added!");
+    })
+</script>
 </html>

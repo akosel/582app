@@ -64,7 +64,7 @@ def acceptFriendRequest(friendid):
         tryuser['feed'] = [d for d in tryuser['feed'] if d.get('name') != frienduser['name'] or d.get('type') != 'friendrequest']
         db.users.save(tryuser);
 
-def getNewsFeed():
+def getFeed():
     tryuser = db.users.find_one({"username":session['email']})
     if(tryuser):
             return dumps(tryuser['feed'])
@@ -80,6 +80,14 @@ def addTask(duedate,name, desc):
     tArr.append(task)
     print tArr
     return task
+
+def addNewTask(goalname,duedate,name,desc): 
+    task = {"duedate": duedate, "name": name, "description": desc, "people": [session['email']], "completed":[], "comments": []}
+    trygoal = db.goals.find_one({"name":goalname})
+    trygoal['tasks'].append(task)
+    db.goals.save(trygoal)
+    return dumps(trygoal)
+     
 
 def joinTask(goalname, taskname):
     trygoal= db.goals.find_one({"name": goalname})
@@ -217,14 +225,13 @@ def getusers():
     users = db.users.find()
     return dumps(users,default=json_util.default)
 
-@app.route('/newsfeed')
+@app.route('/getfeed')
 def newsfeed():
-    return getNewsFeed()
+    return getFeed()
 
-@app.route('/addtask')
-def addtask():
-    tryuser = db.users.find_one({'username':session['email']})
-    return addTask(datetime.datetime.now(),session['name'],'My fun task')
+@app.route('/addtask/<goalname>/<enddate>/<title>/<description>')
+def addtask(goalname,enddate,title,description):
+    return addNewTask(goalname,enddate,title,description)
 
 
 @app.route('/addgoal/<title>/<description>/<startdate>/<enddate>/<taskArr>')
@@ -235,7 +242,7 @@ def addgoal(title,description,startdate,enddate,taskArr):
     for task in taskArr:
         myTasks.append(addTask(taskArr[task]['end'],taskArr[task]['title'],taskArr[task]['description']))
     addGoal(title,description,startdate,enddate,myTasks)
-    return title,description,taskArr
+    return dashboard
     
 @app.route('/getfriends')
 def getfriends():
@@ -250,14 +257,14 @@ def getfriends():
 @app.route('/purgeall')
 def purgeall():
     #tryuser = db.users.find_one({'username':session['email']})
-    db.goals.remove()
-    #if(tryuser):
-     #   tryuser['feed'] = []
+    #db.goals.remove()
+    if(tryuser):
+        tryuser['feed'] = []
       #  tryuser['friends'] = []
        # tryuser['friendrequest'] = []
-        #db.users.save(tryuser) 
-        #return dumps(tryuser)
-    return dumps(db.goals.find())
+        db.users.save(tryuser) 
+        return dumps(tryuser)
+    #return dumps(db.goals.find())
     
  
 
