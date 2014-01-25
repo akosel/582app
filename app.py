@@ -135,13 +135,12 @@ def index():
     if 'email' not in session:
         return idx
     else:
-    #print session
         tryuser = db.users.find_one({'username':session['email']})
         trygoals = db.goals.find({'people':session['email']})
-        me = tryuser  
+        me = sorted(tryuser['feed'], key=lambda item: item['date'],reverse=True) 
         goals = trygoals
-        print trygoals
-        return render_template('dashboard.html',me=me,goals=goals)
+        print trygoals.count()
+        return render_template('dashboard.html',me=me,goals=goals,user=tryuser)
 #TODO change this to be more like the goaltree page (i.e. add a template for the page) 
 @app.route('/goals')
 def goals():

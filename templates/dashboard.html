@@ -14,10 +14,10 @@
     <div class='container' id='profileHeader'>
         <div class='media'>
             <a class="pull-left" href="#">
-		<img id="propic" src={{ me.picture }} class="media-object" alt="pumpkinstin"/>
+		<img id="propic" src={{ user.picture }} class="media-object" alt="pumpkinstin"/>
             </a>
             <div class="media-body">
-                <h4 id="name" class="media-heading">{{ me.name }}</h4>
+                <h4 id="name" class="media-heading">{{ user.name }}</h4>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <div class='row'>
             <div id='activityFeedContainer' class='col-md-8'>
                 <h4>Activity Feed</h4>
-                {% for item in me.feed %}
+                {% for item in me %}
                     <div class='container'>
                         <div class='media'>
                             <a class='pull-left' href='#'>
@@ -49,17 +49,18 @@
                 <h4>To Do</h4>
                 <div id='toDoList'>
                 {% for goal in goals %}
+                    {% for task in goal.tasks %}
                     <div class='container'>
                         <div class='media'>
                                 <i class='fa-media-object fa fa-square-o fa-4x' id='toDoItem{{goal._id}}' ></i>
                             <div class='media-body'>
-                                 <h5 class='toDoDate'>{{ goal.end }}</h5>
-                                <h4 class='media-heading media-heading-bold'>{{goal.name}}</h4>
-                                part of goal x
-                                {{goal.description}}
+                                 <h5 class='toDoDate'>{{ task.duedate }}</h5>
+                                <h4 class='media-heading media-heading-bold'>{{task.name}}</h4>
+                                part of goal {{goal.name}}
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 {% endfor %}
                 </div>     
             </div>
