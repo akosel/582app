@@ -51,19 +51,17 @@ def completeTask(goalid,taskid,comment=""):
     tryuser = db.users.find_one({"username":session["email"]})
     trytask = db.tasks.find_one({"goalid":goalid,"_id":taskid})
     print trytask,tryuser 
-    
-    #account for picture
-    trytask['people'].remove(tryuser['username'])
-    trytask['completed'].append(tryuser['username'])
 
+    #trytask['people'].remove(tryuser['username'])
+    #trytask['completed'].append(tryuser['username'])
     trytask['comments'].append({'message':comment,'username':session['email'],'name':tryuser['name'],'picture':session['picture']})
     #this may not work at all
-    updateFeedArr = trytask['people'] + trytask['completed']
-    for user in updateFeedArr.remove(session['email']):
-        frienduser = db.users.find_one({"username":user})
-        if frienduser:
-            frienduser['feed'].append({'message':session['name'] + ' just completed a goal ','name':session['name'],'picture':session['picture'],'date':datetime.datetime.now(),'type':'goalcomplete','id':tryuser['_id']})       
-            db.users.save(frienduser)
+    #updateFeedArr = trytask['people'] + trytask['completed']
+    #for user in updateFeedArr.remove(session['email']):
+     #   frienduser = db.users.find_one({"username":user})
+      #  if frienduser:
+       #     frienduser['feed'].append({'message':session['name'] + ' just completed a goal ','name':session['name'],'picture':session['picture'],'date':datetime.datetime.now(),'type':'goalcomplete','id':tryuser['_id']})       
+        #    db.users.save(frienduser)
     db.tasks.save(trytask)
     return dumps(trytask) 
 
