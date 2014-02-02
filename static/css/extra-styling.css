@@ -28,6 +28,7 @@ body#dashboard{
     background:#6c9c76;
 }
 #rowContainer{
+    position:relative;
     padding:0;
     margin:0;
 }
@@ -52,6 +53,7 @@ body#dashboard{
 #toDoListContainer{
     background-color:rgb(246,122,70);
     height:auto;
+    min-height:100%;
     z-index:3;
 }
 #activityFeedContainer{
@@ -60,9 +62,23 @@ body#dashboard{
     min-height:100%;
     z-index:2;
 }
+#activityFeedContainer .media{
+    margin:0 auto;
+    display:inline-block;
+    width:67%;
+}
+#activityFeedContainer .container{
+    border-top:solid;
+    border-width:.1em;
+}
 #profileHeader{
     background-color:rgb(128,128,128);
     padding:1em;
+}
+#profileHeader .media{
+    width:1024px;
+    display:block;
+    margin:0 auto;
 }
 #navbar{
     float: left;
@@ -84,15 +100,9 @@ body#dashboard{
     height:100px;
     position:relative;
 }
-.media{
-    margin:0 auto;
-}
-#profileHeader .media{
-    width:1024px;
-}
 .sidefiller{
     height:100%;
-    width:60%;
+    width:65%;
     z-index:1;
     float:left;
     position:absolute;
@@ -134,11 +144,17 @@ body#dashboard{
 .btn-brown{
     color:white;
     background-color:rgb(142,69,37);
+    box-shadow:0 3px 0 #633019;
 }
-.btn-square{
-    border-radius:0;
-    border-color:rgb(142,69,37);
-    margin:.5em;
+.btn-brown:hover{
+    background-color:#bb8f7c;
+}
+.notnow-btn{
+    background-color:#777f7c;
+    box-shadow:0 3px 0 #505b56;
+}
+.notnow-btn:hover{
+    background-color:#c4c8c6;
 }
 textarea.form-control{
    background-color:rgb(243,169,134); 
@@ -180,23 +196,58 @@ h1,h2,h3,h4,h5,h6{
 #dashboard .goalsCreate { display: inline-block; width: 100%; padding: 30px; position: absolute; top:40px;text-decoration:none;
     -webkit-border-radius: 3px;
     box-shadow: 0 3px 0 rgb(243,140,100);
-    background-color:rgb(243,169,134); 
     border-color:rgb(142,69,37);
+    background-color:rgb(130,50,25);
     -webkit-transition: background-color 300ms ease-out;
     -moz-transition: background-color 300ms ease-out;
     transition: background-color 300ms ease-out;
 }
 #dashboard .goalsCreate:hover { 
-    background-color:rgb(142,69,37);
+    background-color:rgb(243,169,134); 
 }
-#dashboard .goalsCreate:hover .createLabel, #dashboard .goalsCreate:hover .fa-plus-circle { color: #fff;}
+#dashboard .goalsCreate:hover .createLabel, #dashboard .goalsCreate:hover .fa-plus-circle { 
+    color:rgb(142,69,37);
+   }
 
 #dashboard .fa-plus-circle {
     color:rgb(142,69,37);
+ color:rgb(243,140,100);
 }
 #dashboard .createLabel { display: inline; font-size: 18px; margin-left: 10px;
-
-    color:rgb(142,69,37);
+ color:rgb(243,140,100);
+}
+#dashboard .btn-container{
+    margin:20px 50px;
+    display:inline-block;
+    width:100px;
+}
+#dashboard .menu-btn{
+    -webkit-border-radius: 3px;
+    margin:.5em;
+    width:100px;
+    border-radius:3px;
+    border:none;
+    color: #FFF;
+    -webkit-font-smoothing: antialiased;
+    padding:5px 20px;
+    text-decoration:none;
+    -webkit-transition: background-color 300ms ease-out;
+    -moz-transition: background-color 300ms ease-out;
+    transition: background-color 300ms ease-out;
+}
+#dashboard .accept {
+    background: #3b7140;
+    box-shadow: 0 3px 0 #213f24;
+}
+#dashboard .accept:hover{
+    background:#6c9c76;
+}
+#dashboard .reject {
+    background: #C41C30;
+    box-shadow: 0 3px 0 #8f1423;
+}
+#dashboard .reject:hover{
+    background-color:#d5606e;
 }
 /* Goal Tree
 =================*/
@@ -374,7 +425,7 @@ h1,h2,h3,h4,h5,h6{
 #goalTree #task-checkboxBox{
     width:100px;
     float:left;
-    height:190px;
+    height:250px;
     position:relative;
     background-color:#70CCC8;
 }
@@ -388,7 +439,7 @@ h1,h2,h3,h4,h5,h6{
 
 #goalTree #task-box-wrapper {
 	border: 7px solid #70CCC8;
-	height: 190px;
+	height: 250px;
 	overflow: visible;
 }
  
@@ -408,7 +459,7 @@ h1,h2,h3,h4,h5,h6{
 
 #goalTree .leftBox h3 {
 	font-size: 1.7em;
-	line-height: .1em;
+	line-height: 1em;
 }
 
 #goalTree .leftBox p {
@@ -424,7 +475,7 @@ h1,h2,h3,h4,h5,h6{
 	width: 100%;
 	margin: 30px 0 0 0;
 	padding: 10px;
-	display:block;
+	display:none;
 }
 
 #goalTree .comment-pic {

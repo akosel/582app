@@ -139,11 +139,13 @@
             console.log(JSON.stringify(taskArr))
         }
         taskStr = JSON.stringify(taskArr)
+        friendStr = $('textarea[label=friendInvite]').val();
         url = '/addgoal/' + $('input[name=1newGoalTitle]').val() + "/" + 
                 $('input[name=2newGoalDescription]').val() + "/" + 
                 format.parse($('input[name=3StartDate]').val()) + "/" +
                 format.parse($('input[name=4EndDate]').val()) + "/" +
-                taskStr;
+                taskStr + "/" +
+                friendStr;
         console.log(url);
         $.get(url);
         alert("New Goal Added!");
