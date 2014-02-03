@@ -1,5 +1,5 @@
 body#goalTree{
-	background-color:#fff;
+    background-color:#fff;
 }
 body#dashboard{
   padding-top: 51px;
@@ -84,7 +84,7 @@ body#dashboard{
 
 .navbar-header { background-color: #162127;}
 .navbar-nav#back{
-	margin-right:10px;
+    margin-right:10px;
 }
 .navbar-inverse {
   font-family: 'CreteRound-Regular', serif;
@@ -144,7 +144,7 @@ textarea.form-control{
 }
 
 .navbar-nav#back{
-	margin-right:10px;
+    margin-right:10px;
 }
 
 @font-face {
@@ -232,23 +232,23 @@ h1,h2,h3,h4,h5,h6{
     background-color:rgb(234,234,234);
     height:100%;
     padding: 2em 0;
-	text-transform:capitalize;
-	color: #346073;
+    text-transform:capitalize;
+    color: #346073;
 }
 
 #goalTree .goalBox h1 {
-	font-family:'CreteRound-Regular', serif
-	font-size: 4em;
+    font-family:'CreteRound-Regular', serif
+    font-size: 4em;
 }
 
 #goalTree .goalBox h2 {
-	font-family:proxima-nova-semibold, sans-serif;
-	font-size: 1.3em;
+    font-family:proxima-nova-semibold, sans-serif;
+    font-size: 1.3em;
 }
 
 #goalTree .goalBox p {
-	font-family:proxima-nova-reg, sans-serif;
-	font-size: 1.2em;
+    font-family:proxima-nova-reg, sans-serif;
+    font-size: 1.2em;
 }
 
 #goalTree .checkboxBox{
@@ -302,19 +302,19 @@ h1,h2,h3,h4,h5,h6{
 }
 
 #goalTree .mainGoal .functionBox .functionSide {
-	margin: 20px 10px 0 0;
-	color: #999;
+    margin: 20px 10px 0 0;
+    color: #999;
 }
 
 #goalTree .mainGoal .functionBox {
-	visibility:hidden;
+    visibility:hidden;
 }
 
 #goalTree .mainGoal:hover .functionBox {
-	visibility:visible;
-	cursor:pointer;
+    visibility:visible;
+    cursor:pointer;
 }
-	
+    
 
 #goalTree .lineDiv{
     z-index:-1000;
@@ -323,8 +323,8 @@ h1,h2,h3,h4,h5,h6{
     border-left: 7px #ccc solid;
     height:150%;
     position:absolute;
-	color:
-	
+    color:
+    
 }
 
 #goalTree .task{
@@ -340,6 +340,7 @@ h1,h2,h3,h4,h5,h6{
     height:190px;
     position:relative;
     background-color:#70CCC8;
+    /* display: inline-block; */
 }
 
 #goalTree #task-checkboxBox i{
@@ -350,134 +351,150 @@ h1,h2,h3,h4,h5,h6{
 }
 
 #goalTree #task-box-wrapper {
-	border: 7px solid #70CCC8;
-	height: 190px;
-	overflow: visible;
+    border: 7px solid #70CCC8;
+    /* height: 100%; */
+    overflow: visible;
 }
  
 #goalTree .leftBox{
-    float:left;
-	padding: 20px 0 0 50px;
+    /* float:left; */
+    
+    padding: 20px 0 0 50px;
     background-color:white;
-    height:100%; 
-    width:55%;
+    /* height: 190px; */ 
+    display: inline-block;
+    width: 55%;
 }
 
 #goalTree .leftBox h4 {
-	font-family: proxima-nova-semibold, Arial, Helvetica, sans-serif;
-	font-size: 1.2em;
-	color: #346073;
+    font-family: proxima-nova-semibold, Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: #346073;
 }
 
 #goalTree .leftBox h3 {
-	font-size: 1.7em;
-	line-height: .1em;
+    font-size: 1.7em;
+    line-height: .1em;
 }
 
 #goalTree .leftBox p {
-	font-family: proxima-nova-reg, Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	margin-top: 15px;
-	color: #152126;
+    font-family: proxima-nova-reg, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    margin-top: 15px;
+    color: #152126;
 }
 
 #goalTree #comments {
-	border-top: 1px solid #ccc;
-	height: 100px;
-	width: 100%;
-	margin: 30px 0 0 0;
-	padding: 10px;
-	display:block;
+    border-top: 1px solid #ccc;
+    /* height: 100px; */
+    width: 100%;
+    margin: 46px 0 0 0;
+    padding: 10px;
+    display:block;
 }
 
 #goalTree .comment-pic {
-	width: 40px;
-	height: 40px;
-	float: left;
-	margin: 0px 15px 0 0 ;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	background-color:#666;
+    width: 40px;
+    height: 40px;
+    
+    display: inline-block;
+    margin: 15px 15px 0 0 ;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background-color:#666;
+    vertical-align: top;
 }
 
 #goalTree .comment-body {
-	height: 100%;
-	width: 80%;
-	float: right;
-	margin: -10px 0 0 -20px;
+    /* height: 100%; */
+    width: 100%;
+    display: inline-block;
+    margin: -10px 0 0 -20px;
 }
 
 #goalTree .comment-body h5 {
-	font-family: proxima-nova-bold, Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	margin-top: 15px;
-	color: #152126;
+    font-family: proxima-nova-bold, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    margin-top: 15px;
+    color: #152126;
 }
 
 #goalTree .comment-body p {
-	font-family: proxima-nova-reg, Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	margin-top: 5px;
-	color: #152126;
+    font-family: proxima-nova-reg, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    margin-top: 5px;
+    color: #152126;
+}
+
+#goalTree .comment-text {
+    display: inline-block;
+    width: 80%;
 }
 
 #goalTree .task #task-functionBox{
-    width:70px;
+    /* width:70px; */
     float:right;
-    height:100%;
-	margin-right: -50px;
-	visibility:hidden;
+    /* height:100%; */
+    
+    margin-right: 10px;
+    
+    /* margin-top: 10px; */
+    visibility:hidden;
+    display: inline-block;
 }
 
 #goalTree .task .leftBox:hover #task-functionBox {
-	visibility:visible;
-	cursor:pointer;
+    visibility:visible;
+    cursor:pointer;
 }
-	
+    
 #goalTree .task .leftBox .goalBox #unread-icon.fa-comments {
-	color: #549996;
-	margin-right: 10px;
+    color: #549996;
+    margin-right: 10px;
 }
 
 #goalTree .task .leftBox .goalBox a.unread {
-	color: #549996;
-	font-family: proxima-nova-reg, Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
+    color: #549996;
+    font-family: proxima-nova-reg, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
 }
 
 
 #goalTree .task #task-functionBox .fa-lg {
-	color: #999;
+    color: #999;
 }
 
 #goalTree .rightBox{
-    float:right;
+    /* float:right; */
     background-color:white;
-	border-left: 1px solid #ccc;
-    height:80%;
-    width:30%;
-	margin: 15px 0 15px 0px;
-	padding-left: 2%;
+    border-left: 1px solid #ccc;
+    /* height: 153px; */
+    width: 30%;
     
+    margin: 15px 0 15px 0px;
+    padding-left: 2%;
+    
+    display: inline-block;
+    vertical-align: top;
 }
 
 #goalTree .rightBox p {
-	font-family: proxima-nova-reg, Arial, Helvetica, sans-serif;
-	font-size: 1.1em;
-	margin-top: 15px;
-	color: #152126;
+    font-family: proxima-nova-reg, Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+    margin-top: 15px;
+    color: #152126;
 }
 
 #goalTree .rightBox .ppl-complete {
-	width: 40px;
-	height: 40px;
-	float: left;
-	margin: 10px 15px 0 0 ;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	background-color:#666;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin: 10px 15px 0 0 ;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    background-color:#666;
 }
 
 #addtask-btn {
@@ -492,38 +509,40 @@ h1,h2,h3,h4,h5,h6{
   width: 100px;
   height: 40px;
   background: #999;
-  padding-top: 10px;
-  padding-left: 18px;
+  padding-top: 7px;
+  padding-left: 15px;
   color: #fff;
   font-family: proxima-nova-semibold;
+  float: right;
+  margin-top: 25px;
 }
 
 #add-task:hover {
-	background-color:#333;
-	text-decoration:none;
+    background-color:#333;
+    text-decoration:none;
 }
 
 .shape-container {
-	width: 200px;
-	height: 50px;
-	background-color:#F67A45;
-	margin-top: 30px;
-	padding: 10px 0 10px 20px;
-	color: #fff;
-	font-family:proxima-nova-semibold;
-	font-size: 1.4em;
+    width: 200px;
+    height: 50px;
+    background-color:#F67A45;
+    margin-top: 30px;
+    padding: 10px 0 10px 20px;
+    color: #fff;
+    font-family:proxima-nova-semibold;
+    font-size: 1.4em;
 }
 
 
 .triangle-right {
-	width: 0;
-	height: 0;
-	border-top: 25px solid transparent;
-	border-left: 30px solid #F67A45;
-	border-bottom: 25px solid transparent;
-	float: left;
-	clear: left;
-	margin: -38px 0 0 180px;
+    width: 0;
+    height: 0;
+    border-top: 25px solid transparent;
+    border-left: 30px solid #F67A45;
+    border-bottom: 25px solid transparent;
+    float: left;
+    clear: left;
+    margin: -38px 0 0 180px;
 }
 
   

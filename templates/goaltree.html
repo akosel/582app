@@ -65,12 +65,12 @@
             <div class='task'>    
 
                 {% for task in tasks %}
-                <div id='task-checkboxBox'>
-                    <div class='checkboxSide'>
-                        <i id={{task._id}} class='fa fa-square fa-4x' data-toggle='modal' data-target='#taskComplete'></i>
-                    </div>
-                </div>
                 <div id="task-box-wrapper">
+                  <div id='task-checkboxBox'>
+                      <div class='checkboxSide'>
+                          <i id={{task._id}} class='fa fa-square fa-4x' data-toggle='modal' data-target='#taskComplete'></i>
+                      </div>
+                  </div>
                     <div class='leftBox'>
                         <div id='task-functionBox'>
                             <div class='functionSide'>
@@ -86,8 +86,14 @@
                            <i id="unread-icon" class="fa fa-comments"></i><a href="javascript:;" class="unread">{{ task.comments|length }} comment(s)</a>
                            <div id="comments">
                                 {% for comment in task.comments %}
-                           		<img src={{comment.picture}} class="comment-pic"></img>
-                                <div class="comment-body"><h5>{{comment.name}}</h5><p>{{comment.message}}</p></div>
+                           		
+                                <div class="comment-body">
+                                  <img src={{comment.picture}} class="comment-pic"/>
+                                  <div class="comment-text">
+                                    <h5>{{comment.name}}</h5>
+                                    <p>{{comment.message}}</p>
+                                  </div>
+                                </div>
                                 {% endfor %}
                      		</div>
           
