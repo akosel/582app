@@ -276,10 +276,7 @@ def addgoal(title,description,startdate,enddate,taskArr,friendArr):
         tryfriend['feed'].append({'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
         print tryfriend
         db.users.save(tryfriend)
-    return dashboard
-=======
     return '<h1>You did it</h1>' + dumps(trygoal)
->>>>>>> aaronsdatabasework
     
 @app.route('/getfriends')
 def getfriends():
