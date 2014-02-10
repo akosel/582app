@@ -425,7 +425,7 @@ h1,h2,h3,h4,h5,h6{
 #goalTree #task-checkboxBox{
     width:100px;
     float:left;
-    height:250px;
+    height:100%;
     position:relative;
     background-color:#70CCC8;
 }

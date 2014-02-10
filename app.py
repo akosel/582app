@@ -165,6 +165,7 @@ def index():
         me = sorted(tryuser['feed'], key=lambda item: item['date'],reverse=True) 
         goals = trygoals
         todo = db.tasks.find({'people.username':session['email']})
+        print todo
         return render_template('dashboard.html',me=me,goals=goals,user=tryuser,todo=todo)
 
 #TODO change this to be more like the goaltree page (i.e. add a template for the page) 
