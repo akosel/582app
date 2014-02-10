@@ -27,13 +27,13 @@ app.jinja_env.filters['datetimeformat'] = datetimeformat
 
 def addGoal(name,desc,start,end,pplArr=[]):
     tryuser = db.users.find_one({"username":session['email']})
-    pplArr = [session['email']]
+    pplArr = [{"username":session['email'],"picture":session['picture']}]
     goal = {"name": name, "description": desc, "people" : pplArr, "start": start, "end": end, "completed": [],"comments":[],"incentives":[]}
     goals = db.goals
     goal_id = goals.insert(goal) 
     for friend in set(tryuser['friends']):
         frienduser = db.users.find_one({"username":friend})
-        frienduser['feed'].append({'message':session['name'] + ' just added the goal '+name,'date':datetime.datetime.now(),'type':'goaladd','id':tryuser['_id']})       
+        frienduser['feed'].append({'picture':session['picture'],'message':session['name'] + ' just added the goal '+name,'date':datetime.datetime.now(),'type':'goaladd','id':tryuser['_id']})       
         db.users.save(frienduser)
     return dumps(goal)
 
@@ -48,20 +48,22 @@ def completeTask(goalid,taskid,comment=""):
     if type(taskid) == unicode or type(taskid) ==str:
         taskid = ObjectId(taskid)
 
+    db.tasks.update({},{'$pull':{'people':{'username':session['email']}}} )
+    db.tasks.update({},{'$push':{'completed':{'username':session['email'],'picture':session['picture']}}} )
     tryuser = db.users.find_one({"username":session["email"]})
     trytask = db.tasks.find_one({"goalid":goalid,"_id":taskid})
-    print trytask,tryuser 
-
-    #trytask['people'].remove(tryuser['username'])
-    #trytask['completed'].append(tryuser['username'])
     trytask['comments'].append({'message':comment,'username':session['email'],'name':tryuser['name'],'picture':session['picture']})
+    print trytask
     #this may not work at all
-    #updateFeedArr = trytask['people'] + trytask['completed']
-    #for user in updateFeedArr.remove(session['email']):
-     #   frienduser = db.users.find_one({"username":user})
-      #  if frienduser:
-       #     frienduser['feed'].append({'message':session['name'] + ' just completed a goal ','name':session['name'],'picture':session['picture'],'date':datetime.datetime.now(),'type':'goalcomplete','id':tryuser['_id']})       
-        #    db.users.save(frienduser)
+#    updateFeedArr = trytask['people'] + trytask['completed']
+#    print updateFeedArr
+#    for user in updateFeedArr:
+#        print user
+#        frienduser = db.users.find_one({"username":user})
+#        print frienduser
+#        if frienduser:
+#            frienduser['feed'].append({'message':session['name'] + ' just completed a goal ','name':session['name'],'picture':session['picture'],'date':datetime.datetime.now(),'type':'goalcomplete','id':tryuser['_id']})       
+#            db.users.save(frienduser)
     db.tasks.save(trytask)
     return dumps(trytask) 
 
@@ -109,7 +111,7 @@ def getFriendRequests():
 def addTask(goalid,end,name,desc): 
     if type(goalid) == unicode or type(goalid) ==str:
         goalid = ObjectId(goalid)
-    task = {"goalid":goalid,"end": end, "name": name, "description": desc, "people": [session['email']], "completed":[], "comments":[],"incentives":[]}
+    task = {"goalid":goalid,"end": end, "name": name, "description": desc, "people": [{'username':session['email'],'picture':session['picture']}], "completed":[], "comments":[],"incentives":[]}
     db.tasks.insert(task)
     return dumps(task)
 
@@ -158,17 +160,17 @@ def index():
         return idx
     else:
         tryuser = db.users.find_one({'username':session['email']})
-        trygoals = db.goals.find({'people':session['email']})
+        trygoals = db.goals.find({'people.username':session['email']})
         me = sorted(tryuser['feed'], key=lambda item: item['date'],reverse=True) 
         goals = trygoals
-        todo = db.tasks.find({'people':session['email']})
+        todo = db.tasks.find({'people.username':session['email']})
         return render_template('dashboard.html',me=me,goals=goals,user=tryuser,todo=todo)
 
 #TODO change this to be more like the goaltree page (i.e. add a template for the page) 
 @app.route('/goals')
 def goals():
     tryuser = db.users.find_one({'username':session['email']})
-    trygoals = db.goals.find({'people':session['email']})
+    trygoals = db.goals.find({'people.username':session['email']})
     return render_template('goals.html',me=tryuser,goals=trygoals)
 
 @app.route('/goals/<goal>')
@@ -244,25 +246,27 @@ def addtask(goalid,enddate,title,description):
 @app.route('/completetask/<goalid>/<taskid>/<comment>')
 def completetask(goalid,taskid,comment):
     return completeTask(goalid,taskid,comment)
+
+@app.route('/removetask/<taskid>')
+def removetask(taskid):
+    db.tasks.remove({'_id':ObjectId(taskid)})
+    return dumps(db.tasks.find())
     
 @app.route('/addgoal/<title>/<description>/<startdate>/<enddate>/<taskArr>/<friendArr>')
 def addgoal(title,description,startdate,enddate,taskArr,friendArr):
     tryuser = db.users.find_one({'username':session['email']});
     for friend in friendArr.split(','):
-        print friend
         tryfriend = db.users.find_one({'username':str(friend)})
-        print tryfriend
         tryfriend['goalrequests'].append(title) 
         tryfriend['feed'].append({'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
-        print tryfriend
-    return "" 
+        db.users.save(tryfriend)
     taskArr = json.loads(taskArr)
     myTasks = []
     addGoal(title,description,startdate,enddate,myTasks)
     trygoal = db.goals.find_one({'name':title,'description':description})
     for task in taskArr:
         addTask(trygoal['_id'],taskArr[task]['end'],taskArr[task]['title'],taskArr[task]['description']);
-    return dashboard
+    return '<h1>You did it</h1>' + dumps(trygoal)
     
 @app.route('/getfriends')
 def getfriends():

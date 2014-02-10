@@ -207,11 +207,17 @@
         url = '/addtask/' + taskDict['goalid'] + '/' + taskDict['end'] + '/' + taskDict['title'] + '/' + taskDict['description'];
         console.log(url);
         $.get(url);
-        alert("Task Added!");
+        location.reload(true);
+        alert('New task added!');
     })
 
     $('i').on('click',function(){
         currentTaskId = $(this).attr('id'); 
+    }); 
+    $('.fa-trash-o').on('click',function(){
+        currentTaskId = $(this).parent().attr('id'); 
+        $.get('/removetask/' + currentTaskId);
+        
     }); 
 </script>
 </html>
