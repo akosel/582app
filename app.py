@@ -4,6 +4,7 @@ import json
 import datetime
 import requests
 from bson import json_util
+from dateutil import parser
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask.ext.mongoengine import MongoEngine
@@ -21,7 +22,7 @@ f = open('dashboard.html', 'r')
 dashboard = f.read();
 #this essentially doesn't work. need to mess with it later.
 def datetimeformat(value,format='%Y-%m-%d'):
-    return value[4:16]
+    return parser.parse(value).strftime('%B %d, %Y')
 
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 
@@ -260,7 +261,7 @@ def addgoal(title,description,startdate,enddate,taskArr,friendArr):
     for friend in friendArr.split(','):
         tryfriend = db.users.find_one({'username':str(friend)})
         tryfriend['goalrequests'].append(title) 
-        tryfriend['feed'].append({'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
+        tryfriend['feed'].append({'picture':session['picture'],'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
         db.users.save(tryfriend)
     taskArr = json.loads(taskArr)
     myTasks = []
@@ -274,7 +275,7 @@ def addgoal(title,description,startdate,enddate,taskArr,friendArr):
         tryfriend = db.users.find_one({'username':str(friend)})
         print tryfriend
         tryfriend['goalrequests'].append({'goalid': trygoal['_id'] , 'requesterid': tryuser['_id'] , 'date' : datetime.datetime.now()})
-        tryfriend['feed'].append({'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
+        #tryfriend['feed'].append({'picture':session['picture'],'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
         print tryfriend
         db.users.save(tryfriend)
     return '<h1>You did it</h1>' + dumps(trygoal)

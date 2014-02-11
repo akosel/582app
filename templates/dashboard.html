@@ -37,7 +37,7 @@
                             <div class='media-body'>
                                 <h4 class='media-heading media-heading-bold'>{{ item.name }}</h4>
                                 {{item.message}} 
-                                <h5 class='activityFeedDate'>{{ item.date }}</h5>
+                                <h5 class='activityFeedDate'>{{ item.date.strftime('%B %d at %H:%M %p') }}</h5>
                             </div>
                         </div>
                         {% if item.type == 'friendrequest' %}
@@ -45,6 +45,11 @@
                                <button id={{ item.id }} class='menu-btn pull-right accept'>Accept</button>
                                <button id={{ item.id }} class='menu-btn pull-right reject'>Reject</button>
                             </div>
+                        {% elif item.type == 'goalrequest' %}
+                            <div class='btn-container'>
+                               <button id={{ item.id }} class='menu-btn pull-right accept'>Accept</button>
+                               <button id={{ item.id }} class='menu-btn pull-right reject'>Reject</button>
+                            </div> 
                         {% endif %}
                     </div>
                 {% else %}
@@ -61,7 +66,7 @@
                             <div class='media'>
                                     <i class='fa-media-object fa fa-square-o fa-4x' id={{loop.index}} label={{task._id}}></i>
                                 <div class='media-body'>
-                                     <h5 class='toDoDate'>{{ task.end }}</h5>
+                                     <h5 class='toDoDate'>{{ task.end|datetimeformat }}</h5>
                                     <h4 class='media-heading media-heading-bold'>{{task.name}}</h4>
                                     part of goal
                                 </div>

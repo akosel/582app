@@ -51,11 +51,9 @@
                    <h1>{{ goal.name }}</h1> 
                    <p>{{ goal.description }}</p>
                    <div id='pictureBox'>
-                    <div id='gt-users-100'></div>
-                    <div id='plus'>
-                        <i class='fa fa-plus fa-lg'></i>
-                    </div>
-                    <div id='gt-users-100'></div>            
+                    {% for person in goal.people %}
+                    <img src={{ person.picture }} id='gt-users-100'></img>
+                    {% endfor %}
                    </div>   
                 </div> 
             </div>
@@ -102,7 +100,7 @@
                     <div class='rightBox'>
                         <p>{{ task.completed|length }} people completed this task</p>
                         {% for person in task.completed %}
-                            <img class='comment-pic'></img>
+                            <img src={{ person.picture }} class='comment-pic'></img>
                         {% endfor %}
                     </div>
                 </div>

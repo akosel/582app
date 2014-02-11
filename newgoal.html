@@ -148,6 +148,7 @@
         if ($('input[name=1newGoalTitle]').val() && $('input[name=2newGoalDescription]').val() && format.parse($('input[name=3StartDate]').val()) && format.parse($('input[name=4EndDate]').val()) && friendStr) {
             $.get(url);
             alert("New Goal Added!");
+            location.reload();
         } else {
             alert("Fill in all required fields."); 
         }
