@@ -18,8 +18,6 @@ db = client.Mesh_DB
 f = open('index.html', 'r')
 idx = f.read();
 
-f = open('dashboard.html', 'r')
-dashboard = f.read();
 #this essentially doesn't work. need to mess with it later.
 def datetimeformat(value,format='%Y-%m-%d'):
     return parser.parse(value).strftime('%B %d, %Y')
