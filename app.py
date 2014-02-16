@@ -252,7 +252,18 @@ def completetask(goalid,taskid,comment):
 def removetask(taskid):
     db.tasks.remove({'_id':ObjectId(taskid)})
     return dumps(db.tasks.find())
-    
+
+#TODO remove every task with this goal id 
+@app.route('/removegoal/<goalid>')
+def removegoal(goalid):
+    db.goals.remove({'_id':ObjectId(goalid)})
+    db.tasks.remove({'goalid':ObjectId(goalid)})
+    return dumps(db.tasks.find())
+
+@app.route('/deleted')
+def goaldeleted():
+    return "Goal Deleted!"
+
 @app.route('/addgoal/<title>/<description>/<startdate>/<enddate>/<taskArr>/<friendArr>')
 def addgoal(title,description,startdate,enddate,taskArr,friendArr):
     tryuser = db.users.find_one({'username':session['email']});
@@ -267,7 +278,8 @@ def addgoal(title,description,startdate,enddate,taskArr,friendArr):
     trygoal = db.goals.find_one({'name':title,'description':description})
     
     for task in taskArr:
-        addTask(trygoal['_id'],taskArr[task]['end'],taskArr[task]['title'],taskArr[task]['description']);
+        if task:
+            addTask(trygoal['_id'],taskArr[task]['end'],taskArr[task]['title'],taskArr[task]['description']);
 
     for friend in friendArr.split(','):
         tryfriend = db.users.find_one({'username':str(friend)})

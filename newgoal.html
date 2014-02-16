@@ -1,6 +1,7 @@
 <html lang="en">
     <head>
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script src='/static/js/underscore.min.js'></script>
      <script src='/static/js/preloader.js'></script>
     </head>
 
@@ -135,7 +136,11 @@
              taskDict['title'] = $('input[label=newTaskTitle' + i + ']').val();
              taskDict['description'] = $('input[label=newTaskDescription' + i + ']').val();
              taskDict['end'] = format.parse($('input[label=newTaskEnd' + i + ']').val());
-             taskArr['task' + i] = taskDict;
+             if(_.contains(_.values(taskDict),'')){
+                alert('Task not added');
+             } else {
+                taskArr['task' + i] = taskDict;  
+             }
             console.log(JSON.stringify(taskArr))
         }
         taskStr = JSON.stringify(taskArr)
