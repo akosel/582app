@@ -47,11 +47,12 @@ def completeTask(goalid,taskid,comment=""):
     if type(taskid) == unicode or type(taskid) ==str:
         taskid = ObjectId(taskid)
 
-    db.tasks.update({},{'$pull':{'people':{'username':session['email']}}} )
-    db.tasks.update({},{'$push':{'completed':{'username':session['email'],'picture':session['picture']}}} )
+    db.tasks.update({'_id':taskid},{'$pull':{'people':{'username':session['email']}}} )
+    db.tasks.update({'_id':taskid},{'$push':{'completed':{'username':session['email'],'picture':session['picture']}}} )
     tryuser = db.users.find_one({"username":session["email"]})
     trytask = db.tasks.find_one({"goalid":goalid,"_id":taskid})
-    trytask['comments'].append({'message':comment,'username':session['email'],'name':tryuser['name'],'picture':session['picture']})
+    if comment != "":
+        trytask['comments'].append({'message':comment,'username':session['email'],'name':tryuser['name'],'picture':session['picture']})
     print trytask
     #this may not work at all
 #    updateFeedArr = trytask['people'] + trytask['completed']
@@ -163,8 +164,12 @@ def index():
         trygoals = db.goals.find({'people.username':session['email']})
         me = sorted(tryuser['feed'], key=lambda item: item['date'],reverse=True) 
         goals = trygoals
-        todo = db.tasks.find({'people.username':session['email']})
-        print todo
+        tasks = db.tasks.find({'people.username':session['email']}).sort([('end',1)])
+#TODO can't figure out how to get the normal sort to work. weird. oh well.
+        todo = []
+        for item in tasks:
+            todo.append(item)
+        todo = sorted(todo, key=lambda item: datetimeformat(item['end']),reverse=False)
         return render_template('dashboard.html',me=me,goals=goals,user=tryuser,todo=todo)
 
 #TODO change this to be more like the goaltree page (i.e. add a template for the page) 
@@ -178,8 +183,12 @@ def goals():
 def goaltree(goal):
     trygoal = db.goals.find_one({'name':goal})
     goalid =  trygoal['_id']
-    trytasks = db.tasks.find({'goalid':goalid})
-    return render_template('goaltree.html',tasks=trytasks,goal=trygoal,today=datetime.datetime.now().date())
+    tasks = db.tasks.find({'goalid':goalid})
+    todo = []
+    for item in tasks:
+        todo.append(item)
+    todo = sorted(todo, key=lambda item: datetimeformat(item['end']),reverse=True)
+    return render_template('goaltree.html',tasks=todo,goal=trygoal,today=datetime.datetime.now().date())
 
 @app.route('/friends')
 def friends():
@@ -245,8 +254,12 @@ def addtask(goalid,enddate,title,description):
     return addTask(goalid,enddate,title,description)
 
 @app.route('/completetask/<goalid>/<taskid>/<comment>')
-def completetask(goalid,taskid,comment):
+def completetaskshare(goalid,taskid,comment):
     return completeTask(goalid,taskid,comment)
+
+@app.route('/completetask/<goalid>/<taskid>')
+def completetasknotnow(goalid,taskid):
+    return completeTask(goalid,taskid)
 
 @app.route('/removetask/<taskid>')
 def removetask(taskid):

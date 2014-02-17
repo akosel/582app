@@ -144,14 +144,12 @@ body#dashboard{
 .btn-brown{
     color:white;
     background-color:rgb(142,69,37);
-    box-shadow:0 3px 0 #633019;
 }
 .btn-brown:hover{
     background-color:#bb8f7c;
 }
 .notnow-btn{
     background-color:#777f7c;
-    box-shadow:0 3px 0 #505b56;
 }
 .notnow-btn:hover{
     background-color:#c4c8c6;
@@ -167,6 +165,7 @@ textarea.form-control{
 #toDoList div.container,#activityFeed div.container{
     border-top:solid;
     border-width:.1em;
+    margin-bottom:1em;
 }
 .toDoDate{
     color:rgb(142,69,37);
@@ -194,8 +193,6 @@ h1,h2,h3,h4,h5,h6{
     font-family: 'CreteRound-Regular';
 }
 #dashboard .goalsCreate { display: inline-block; width: 100%; padding: 30px; position: absolute; top:40px;text-decoration:none;
-    -webkit-border-radius: 3px;
-    box-shadow: 0 3px 0 rgb(243,140,100);
     border-color:rgb(142,69,37);
     background-color:rgb(130,50,25);
     -webkit-transition: background-color 300ms ease-out;
@@ -222,10 +219,8 @@ h1,h2,h3,h4,h5,h6{
     width:100px;
 }
 #dashboard .menu-btn{
-    -webkit-border-radius: 3px;
     margin:.5em;
     width:100px;
-    border-radius:3px;
     border:none;
     color: #FFF;
     -webkit-font-smoothing: antialiased;
@@ -237,14 +232,12 @@ h1,h2,h3,h4,h5,h6{
 }
 #dashboard .accept {
     background: #3b7140;
-    box-shadow: 0 3px 0 #213f24;
 }
 #dashboard .accept:hover{
     background:#6c9c76;
 }
 #dashboard .reject {
     background: #C41C30;
-    box-shadow: 0 3px 0 #8f1423;
 }
 #dashboard .reject:hover{
     background-color:#d5606e;
@@ -351,6 +344,7 @@ h1,h2,h3,h4,h5,h6{
     top:39%;
     left:28%;
     color:white;
+    z-index:10;
 }
 #goalTree .mainGoal .functionBox{
     width:100px;
