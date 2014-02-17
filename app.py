@@ -192,9 +192,7 @@ def goaltree(goal):
 
 @app.route('/friends')
 def friends():
-    f = open('friends.html', 'r')
-    content = f.read()
-    return content
+    return render_template('friends.html')
 
 @app.route('/newgoal')
 def newgoals():
