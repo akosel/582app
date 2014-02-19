@@ -1,4 +1,5 @@
 from flask import Flask, request, session, redirect, url_for,render_template
+import config
 import urllib
 import json
 import datetime
@@ -182,9 +183,7 @@ def goaltree(goal):
 
 @app.route('/friends')
 def friends():
-    f = open('friends.html', 'r')
-    content = f.read()
-    return content
+    return render_template('friends.html')
 
 @app.route('/newgoal')
 def newgoals():
@@ -267,14 +266,21 @@ def removegoal(goalid):
 def goaldeleted():
     return "Goal Deleted!"
 
+@app.route('/joingoal/<goalid>')
+def joingoal(goalid):
+    if type(goalid) == unicode or type(goalid) ==str:
+        goalid = ObjectId(goalid)
+
+    db.goals.update({'_id':goalid},{'$push':{'people':{'username':session['email'],'picture':session['picture']}}} )
+    db.tasks.update({'goalid':goalid},{'$push':{'people':{'username':session['email'],'picture':session['picture']}}})
+    db.users.update({'username':session['email']},{'$pull':{'feed':{'id':goalid}}}) 
+    db.users.update({'username':session['email']},{'$pull':{'goalrequests':{'goalid':goalid}}}) 
+        
+    return 'Goal accepted!'
+
 @app.route('/addgoal/<title>/<description>/<startdate>/<enddate>/<taskArr>/<friendArr>')
 def addgoal(title,description,startdate,enddate,taskArr,friendArr):
     tryuser = db.users.find_one({'username':session['email']});
-    for friend in friendArr.split(','):
-        tryfriend = db.users.find_one({'username':str(friend)})
-        tryfriend['goalrequests'].append(title) 
-        tryfriend['feed'].append({'picture':session['picture'],'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
-        db.users.save(tryfriend)
     taskArr = json.loads(taskArr)
     myTasks = []
     addGoal(title,description,startdate,enddate,myTasks)
@@ -288,7 +294,7 @@ def addgoal(title,description,startdate,enddate,taskArr,friendArr):
         tryfriend = db.users.find_one({'username':str(friend)})
         print tryfriend
         tryfriend['goalrequests'].append({'goalid': trygoal['_id'] , 'requesterid': tryuser['_id'] , 'date' : datetime.datetime.now()})
-        #tryfriend['feed'].append({'picture':session['picture'],'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
+        tryfriend['feed'].append({'picture':session['picture'],'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':trygoal['_id']})
         print tryfriend
         db.users.save(tryfriend)
     return '<h1>You did it</h1>' + dumps(trygoal)
@@ -322,11 +328,11 @@ def purgeall():
 def login():
     # Step 1
     params = dict(response_type='code',
-                  scope=' '.join(scope),
-                  client_id=client_id,
+                  scope=' '.join(config.scope),
+                  client_id=config.client_id,
                   approval_prompt='force',  # or 'auto'
-                  redirect_uri=redirect_uri)
-    url = auth_uri + '?' + urllib.urlencode(params)
+                  redirect_uri=config.redirect_uri)
+    url = config.auth_uri + '?' + urllib.urlencode(params)
     return redirect(url)
  
  
@@ -336,14 +342,14 @@ def callback():
         # Step 2
         code = request.args.get('code')
         data = dict(code=code,
-                    client_id=client_id,
-                    client_secret=client_secret,
-                    redirect_uri=redirect_uri,
+                    client_id=config.client_id,
+                    client_secret=config.client_secret,
+                    redirect_uri=config.redirect_uri,
                     grant_type='authorization_code')
-        r = requests.post(token_uri, data=data)
+        r = requests.post(config.token_uri, data=data)
         # Step 3
         access_token = r.json()['access_token']
-        r = requests.get(profile_uri, params={'access_token': access_token})
+        r = requests.get(config.profile_uri, params={'access_token': access_token})
         print r.json()
         tryuser = db.users.find_one({"username": r.json()['email']})
         pic = ' ';
