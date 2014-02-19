@@ -1,4 +1,5 @@
 from flask import Flask, request, session, redirect, url_for,render_template
+import config
 import urllib
 import json
 import datetime
@@ -144,15 +145,6 @@ def postComment(goalname, taskname, newcomment):
 def getToDoList():
     return
     
-redirect_uri = 'http://localhost:5000/callback'
-client_id = '11874174533.apps.googleusercontent.com'  # get from https://code.google.com/apis/console
-client_secret = 'ep1Pdcf1P1ulDMsXmigo9JXq'
-
-auth_uri = 'https://accounts.google.com/o/oauth2/auth'
-token_uri = 'https://accounts.google.com/o/oauth2/token'
-scope = ('https://www.googleapis.com/auth/userinfo.profile',
-         'https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/plus.login')
-profile_uri = 'https://www.googleapis.com/oauth2/v1/userinfo'
  
  
 @app.route('/')
@@ -337,11 +329,11 @@ def purgeall():
 def login():
     # Step 1
     params = dict(response_type='code',
-                  scope=' '.join(scope),
-                  client_id=client_id,
+                  scope=' '.join(config.scope),
+                  client_id=config.client_id,
                   approval_prompt='force',  # or 'auto'
-                  redirect_uri=redirect_uri)
-    url = auth_uri + '?' + urllib.urlencode(params)
+                  redirect_uri=config.redirect_uri)
+    url = config.auth_uri + '?' + urllib.urlencode(params)
     return redirect(url)
  
  
@@ -351,14 +343,14 @@ def callback():
         # Step 2
         code = request.args.get('code')
         data = dict(code=code,
-                    client_id=client_id,
-                    client_secret=client_secret,
-                    redirect_uri=redirect_uri,
+                    client_id=config.client_id,
+                    client_secret=config.client_secret,
+                    redirect_uri=config.redirect_uri,
                     grant_type='authorization_code')
-        r = requests.post(token_uri, data=data)
+        r = requests.post(config.token_uri, data=data)
         # Step 3
         access_token = r.json()['access_token']
-        r = requests.get(profile_uri, params={'access_token': access_token})
+        r = requests.get(config.profile_uri, params={'access_token': access_token})
         print r.json()
         tryuser = db.users.find_one({"username": r.json()['email']})
         pic = ' ';
