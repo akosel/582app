@@ -275,14 +275,21 @@ def removegoal(goalid):
 def goaldeleted():
     return "Goal Deleted!"
 
+@app.route('/joingoal/<goalid>')
+def joingoal(goalid):
+    if type(goalid) == unicode or type(goalid) ==str:
+        goalid = ObjectId(goalid)
+
+    db.goals.update({'_id':goalid},{'$push':{'people':{'username':session['email'],'picture':session['picture']}}} )
+    db.tasks.update({'goalid':goalid},{'$push':{'people':{'username':session['email'],'picture':session['picture']}}})
+    db.users.update({'username':session['email']},{'$pull':{'feed':{'id':goalid}}}) 
+    db.users.update({'username':session['email']},{'$pull':{'goalrequests':{'goalid':goalid}}}) 
+        
+    return 'Goal accepted!'
+
 @app.route('/addgoal/<title>/<description>/<startdate>/<enddate>/<taskArr>/<friendArr>')
 def addgoal(title,description,startdate,enddate,taskArr,friendArr):
     tryuser = db.users.find_one({'username':session['email']});
-    for friend in friendArr.split(','):
-        tryfriend = db.users.find_one({'username':str(friend)})
-        tryfriend['goalrequests'].append(title) 
-        tryfriend['feed'].append({'picture':session['picture'],'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
-        db.users.save(tryfriend)
     taskArr = json.loads(taskArr)
     myTasks = []
     addGoal(title,description,startdate,enddate,myTasks)
@@ -296,7 +303,7 @@ def addgoal(title,description,startdate,enddate,taskArr,friendArr):
         tryfriend = db.users.find_one({'username':str(friend)})
         print tryfriend
         tryfriend['goalrequests'].append({'goalid': trygoal['_id'] , 'requesterid': tryuser['_id'] , 'date' : datetime.datetime.now()})
-        #tryfriend['feed'].append({'picture':session['picture'],'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':tryuser['_id']})
+        tryfriend['feed'].append({'picture':session['picture'],'message':session['name'] + ' asked if you want to do a goal','date':datetime.datetime.now(),'type':'goalrequest','id':trygoal['_id']})
         print tryfriend
         db.users.save(tryfriend)
     return '<h1>You did it</h1>' + dumps(trygoal)

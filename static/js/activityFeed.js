@@ -33,7 +33,7 @@ else{
 }
 }
 }
-$(document).on('click','button.accept',function(){
+/*$(document).on('click','button.accept',function(){
     console.log('click');
     url = '/acceptfriendreq/' + $(this).attr('id')
     $.get(url)
@@ -46,4 +46,4 @@ $(document).on('click','button.accept',function(){
             console.log('done loading data'); 
             addPeople(d.newsfeed); 
         })
-})
+})*/

@@ -41,12 +41,12 @@
                             </div>
                         </div>
                         {% if item.type == 'friendrequest' %}
-                            <div class='btn-container'>
+                            <div id={{item.type}} class='btn-container'>
                                <button id={{ item.id }} class='menu-btn pull-right accept'>Accept</button>
                                <button id={{ item.id }} class='menu-btn pull-right reject'>Reject</button>
                             </div>
                         {% elif item.type == 'goalrequest' %}
-                            <div class='btn-container'>
+                            <div id={{item.type}} class='btn-container'>
                                <button id={{ item.id }} class='menu-btn pull-right accept'>Accept</button>
                                <button id={{ item.id }} class='menu-btn pull-right reject'>Reject</button>
                             </div> 
@@ -102,6 +102,12 @@ $(document).on('click','button.notnow-btn',function(){
     console.log('click');
   //  $(this).parent().parent().parent().remove();
     url = '/completetask/' + $(this).prev().prev().attr('label') + '/' + $(this).prev().prev().attr('id');
+    $.get(url);
+})
+$(document).on('click','#goalrequest .accept',function(){
+    console.log('accept');
+    url='/joingoal/' + $(this).attr('id');
+    console.log(url);    
     $.get(url);
 })
 </script>
