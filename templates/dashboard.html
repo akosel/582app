@@ -109,8 +109,10 @@ $(document).on('click','button.notnow-btn',function(){
 $(document).on('click','#goalrequest .accept',function(){
     console.log('accept');
     url='/joingoal/' + $(this).attr('id');
-    console.log(url);    
-    $.get(url);
+    $.get(url,function(){
+        alert('Goal added!');
+        location.reload();
+    })
 })
 </script>
 </html>
