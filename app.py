@@ -149,7 +149,6 @@ def getToDoList():
     return
     
  
- 
 @app.route('/')
 def index():
     if 'email' not in session:
