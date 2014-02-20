@@ -10,6 +10,9 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask.ext.mongoengine import MongoEngine
 from pymongo import MongoClient
+import os
+os.chdir(config.dir)
+
 app = Flask('Mesh')
 app.secret_key = 'datsupasecretappdawg'
 
