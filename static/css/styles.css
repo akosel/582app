@@ -231,6 +231,10 @@ body{
 #newGoalPage .cushion { margin-top: 70px;
 }
 #newGoalPage .grayDivide { width: 100%; background-color: #eee; height: 5px; margin-top: 30px}
+#newGoalPage .inviteFriend ul{list-style-type:none; padding:0; margin:0;}
+#newGoalPage .inviteFriend li{margin:10px;cursor:pointer; }
+#newGoalPage ul img{border-radius:50px;}
+
 
 /* Background Images
 =================*/

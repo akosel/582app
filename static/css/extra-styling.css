@@ -603,4 +603,21 @@ h1,h2,h3,h4,h5,h6{
 	margin: -38px 0 0 180px;
 }
 
+/* FRIEND PAGE */
+#friendPage img {
+    border-radius:100px;
+    height:100px;
+    width:100px;
+}
+#friendPage ul{
+    list-style-type:none;
+    padding:0;
+    margin:0;
+}
+#friendPage #content{
+    width:1024px;
+}
+#friendPage #content li{
+    margin:10px;
+}
   

@@ -36,7 +36,9 @@
                             </a>
                             <div class='media-body'>
                                 <h4 class='media-heading media-heading-bold'>{{ item.name }}</h4>
-                                {{item.message}} 
+                                {{item.message}}
+                                <br>
+                                Goal Name: {{item.id|goalnamefid}} 
                                 <h5 class='activityFeedDate'>{{ item.date.strftime('%B %d at %H:%M %p') }}</h5>
                             </div>
                         </div>

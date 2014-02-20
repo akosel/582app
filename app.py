@@ -22,11 +22,23 @@ db = client.Mesh_DB
 f = open('index.html', 'r')
 idx = f.read();
 
-#this essentially doesn't work. need to mess with it later.
+#define filters for use with jinja2
 def datetimeformat(value,format='%Y-%m-%d'):
     return parser.parse(value).strftime('%B %d, %Y')
+def namefusername(value):
+    return db.users.find_one({'username':value})['name']
+def goalnamefid(value):
+    goalid = ObjectId(value)
+    if db.goals.find_one({'_id':goalid}):
+        return db.goals.find_one({'_id':goalid})['name']
+    else:
+        return "Goal does not exist"
 
 app.jinja_env.filters['datetimeformat'] = datetimeformat
+app.jinja_env.filters['namefusername'] = namefusername
+app.jinja_env.filters['goalnamefid'] = goalnamefid
+
+#begin main app functions
 
 def addGoal(name,desc,start,end,pplArr=[]):
     tryuser = db.users.find_one({"username":session['email']})
@@ -145,9 +157,7 @@ def postComment(goalname, taskname, newcomment):
                 element['comments'].append({"Name": session['name'], "Post:" : newcomment, "Date": datetime.datetime.now()})
                 db.goals.save(trygoal)
 
-def getToDoList():
-    return
-    
+#begin url routes 
  
 @app.route('/')
 def index():
@@ -185,15 +195,20 @@ def goaltree(goal):
     return render_template('goaltree.html',tasks=todo,goal=trygoal,today=datetime.datetime.now().date())
 
 @app.route('/friends')
-def friends():
-    return render_template('friends.html')
+def friends(): 
+    users = db.users.find({'username':{'$ne':session['email']}})
+    goals = db.goals.find({'people.username':session['email']})
+    friends = []
+    for goal in goals:
+        for person in goal['people']:
+            if person['username'] != session['email'] and person not in friends:
+                    friends.append(person)    
+    return render_template('friends.html',friends=friends)
 
 @app.route('/newgoal')
 def newgoals():
-    f = open('newgoal.html', 'r')
-    content = f.read()
-    return content
-
+    users = db.users.find({'username':{'$ne':session['email']}})
+    return render_template('newgoal.html',users=users) 
  
 @app.route('/logout')
 def logout():
@@ -221,6 +236,14 @@ def me():
     #TODO put this in its own function, although this might be OKAY. Wait and see...
     if(tryuser):
         return dumps(tryuser)
+
+@app.route('/getusers/<username>')
+def getuser(username):
+    tryuser = db.users.find_one({'$or':[{"username":username},{"name":{'$regex':username}}]})
+    if(tryuser):
+        return dumps(tryuser)
+    else:
+        return "No users called %s. Try an e-mail address" % username
 
 @app.route('/getgoals')
 def getgoals():

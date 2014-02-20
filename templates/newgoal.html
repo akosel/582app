@@ -1,0 +1,185 @@
+<html lang="en">
+    <head>
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script src='/static/js/underscore.min.js'></script>
+     <script src='/static/js/preloader.js'></script>
+    </head>
+
+ <!--[if lt IE 7 ]><body class="ie ie6" lang="en" id="newGoalPage"> <![endif]-->
+<!--[if IE 7 ]><body class="ie ie7" lang="en" id="newGoalPage"> <![endif]-->
+<!--[if IE 8 ]><body class="ie ie8" lang="en" id="newGoalPage"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><body lang="en" id="newGoalPage"> <!--<![endif]-->
+    <div class='container' id='navbar'></div>
+
+	<div class='wrapper' id='goalsbar'>
+		<div class="buttonWrapper">
+            <a href="/goals">
+                <div class="goalsButton">
+                    <h3 class="goalsTitle"><i class="fa fa-chevron-left"></i>Back to My Goals</h3>
+                </div>
+            </a>
+		</div>
+	</div>
+
+	<div class='mainWrapper'>
+		<div class="newGoalFormWrap">
+			<h4>Create New Goal</h4>
+			<form id="createNewGoal" action="#" method="post">
+				<i class="fa fa-asterisk"></i><input type="text" label="newGoalTitle" placeholder="Goal Title" name="1newGoalTitle" required>
+				</input><br>
+				<i class="fa fa-asterisk"></i><input type="text" label="newGoalDescription" placeholder="Description" name="2newGoalDescription" required>
+				</input><br>
+				<i class="fa fa-asterisk"></i><em>Start Date </em><input type="date" label="newGoalStart" class="small" placeholder="Start Date" name="3StartDate" required>
+				</input>
+				<i class="fa fa-asterisk"></i><em>End Date </em><input type="date" label="newGoalEnd" class="small" placeholder="End Date" name="4EndDate" required>
+				</input>
+			
+			<h5 class="cushion">Add Tasks</h5>
+			<div class='newTaskWrap'>
+				
+					<input type="text" label="newTaskTitle1" placeholder="Task 1 Title" name="5Task1">
+					</input>
+					<input type="text" label="newTaskDescription1" placeholder="Task Description" name="6Task1Desc">
+					</input>
+					<em>Due Date </em><input type="date" label="newTaskEnd1" class="small" placeholder="Due Date" name="7DueDate1">
+					</input>
+				<!-- </form> -->
+			</div>  <!-- end newTaskWrap -->
+<!-- 			<div id="addedTask"></div> -->
+			<div class="button light" id="addTask">
+				<h5>Add Another Task</h5>
+			</div>
+			<div class="button" id="save">
+				<h4>Save</h4>
+			</div>
+		</div>
+
+		<div class="inviteFriend">
+			<h4>Add Friends to This Goal</h4>
+			
+			<div id="inviteFriends">
+				<textarea type="textarea" label="friendInvite" placeholder="Type in your friend's email..." required name="friend1" rows="5"></textarea>
+				<br><p><i class="fa fa-asterisk"></i><em>seperated by commas</em></p>
+                {% if users %} 
+                    <h3>Add these people</h3>
+                    <ul>
+                {% for user in users %}
+                    <li id={{user.username}}>
+                        <img src={{user.picture}} class="friendIcon"></img>
+                        {{user.name}}
+                    </li>
+                {% endfor %}
+                    </ul>
+                {% endif %}
+			</form>
+<!-- 			<div class="button cushion" id="addFriend">
+				<h5>Add Another Friend</h5>
+			</div> -->
+		</div>
+	</div>
+</div>
+
+
+
+    <!-- End Document
+================================================== -->
+<script>
+
+	var tasks = 1;
+	var p = 5;
+	var m = 6;
+	var n = 7;
+	function addNewTask (t) {
+		t = t + 1;
+		p = p + 3;
+		m = m + 3;
+		n = n + 3;
+		tasks = t;
+		console.log(tasks + " " + p + " " +m+ " " + n);
+		$('.newTaskWrap').append('<div class="grayDivide"></div><input type="text" label="newTaskTitle'+tasks+ 
+			'" placeholder="Task '+tasks+' Title" name="'+p+'Task'+tasks+'"></input>' + 
+			'<input type="text" label="newTaskDescription'+tasks+'" placeholder="Task Description" name="'+m+'Task'+tasks+
+			'Desc"></input>'+
+			'<em>Due Date </em><input type="date" label="newTaskEnd'+tasks+
+			'" class="small" placeholder="Due Date" name="'+n+'DueDate'+tasks+
+			'"></input>');
+	}
+
+	var friends = 1;
+	function addNewFriend (f) {
+		f = f + 1;
+		friends = f;
+		$('#inviteFriends').append('<input type="text" label="friendInvite" placeholder="Type in your friend\'s email..." required name="friend'+f+'"></input>');
+	};
+
+	$('#addFriend').on('click', function(){
+		addNewFriend(friends);
+        console.log('click');
+	});
+
+	$('#addTask').on('click', function () { 
+		addNewTask(tasks);
+	});
+
+	var formstring = '';
+
+	function showValues() {
+		formstring = $("#createNewGoal").serialize();
+		console.log(formstring);
+	};
+
+/*	$('#save').on('click', function(){
+		showValues();
+		$.ajax({
+		  type: "POST",
+		  url: "#",
+		  data: formstring,
+		}).done(function( msg ) {
+		    alert( "Data Saved: " + msg );
+		  });
+	});
+*/
+    $('#save').on('click',function(){
+        format = d3.time.format('%Y-%m-%d')
+        taskArr = {};
+        for (i = 1; i <= tasks; i++){
+             taskDict = {}
+             taskDict['title'] = $('input[label=newTaskTitle' + i + ']').val();
+             taskDict['description'] = $('input[label=newTaskDescription' + i + ']').val();
+             taskDict['end'] = format.parse($('input[label=newTaskEnd' + i + ']').val());
+             if(_.contains(_.values(taskDict),'')){
+                alert('Task not added');
+             } else {
+                taskArr['task' + i] = taskDict;  
+             }
+            console.log(JSON.stringify(taskArr))
+        }
+        taskStr = JSON.stringify(taskArr)
+        friendStr = $('textarea[label=friendInvite]').val();
+        url = '/addgoal/' + $('input[name=1newGoalTitle]').val() + "/" + 
+                $('input[name=2newGoalDescription]').val() + "/" + 
+                format.parse($('input[name=3StartDate]').val()) + "/" +
+                format.parse($('input[name=4EndDate]').val()) + "/" +
+                taskStr + "/" + friendStr; 
+        if ($('input[name=1newGoalTitle]').val() && $('input[name=2newGoalDescription]').val() && format.parse($('input[name=3StartDate]').val()) && format.parse($('input[name=4EndDate]').val()) && friendStr) {
+            $.get(url);
+            alert("New Goal Added!");
+            location.reload();
+        } else {
+            alert("Fill in all required fields."); 
+        }
+    });
+    $('li').click(function(){
+        e = $(this).attr('id');
+        i = $('#inviteFriends textarea');
+        if(i.val()){
+            i.append(',' + e);
+        } else {
+            i.append(e);
+        }   
+        $(this).remove();
+    }); 
+
+</script>
+</body>
+</html>
