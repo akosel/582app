@@ -201,7 +201,7 @@ def friends():
     friends = []
     for goal in goals:
         for person in goal['people']:
-            if person['username'] != session['email'] and person not in friends:
+            if person['username'] != session['email'] and person not in friends and len(friends) < 5:
                     friends.append(person)    
     return render_template('friends.html',friends=friends)
 
