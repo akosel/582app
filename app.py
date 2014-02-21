@@ -199,7 +199,7 @@ def goaltree(goal):
         todo = sorted(todo, key=lambda item: datetimeformat(item['end']),reverse=True)
         return render_template('goaltree.html',me=me,tasks=todo,goal=trygoal,today=datetime.datetime.now().date())
     except:
-        return "These aren't the droids you're looking for...move along...move along...<br><br><a href='/'>YOU ARE RIGHT</a>"
+        return "These aren't the droids you're looking for...move along...move along...<br><br><a href='/'>YOU ARE RIGHT<img src='/static/images/Counterparts.jpg'></img></a>"
 
 @app.route('/friends')
 def friends(): 

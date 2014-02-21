@@ -39,9 +39,11 @@
                             </div>
                         </div>
                         <div class="rightWrapper">
-                            <div class="friendIconDiv">
-                                <img src={{me.picture}} class="friendIcon">
-                            </div>
+                                {% for person in goal.people %}
+                                <div class="friendIconDiv">
+                                    <img src={{person.picture}} class="friendIcon">
+                                </div>
+                                {% endfor %}
                         </div>
                     </div>		
             {% endfor %}
