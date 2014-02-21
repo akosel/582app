@@ -38,7 +38,7 @@
                                 <h4 class='media-heading media-heading-bold'>{{ item.name }}</h4>
                                 {{item.message}}
                                 <br>
-                                Goal Name: {{item.id|goalnamefid}} 
+                                Name: <a href='/goals/{{item.id|goalnamefid}}'>{{item.id|goalnamefid}}</a> 
                                 <h5 class='activityFeedDate'>{{ item.date.strftime('%B %d at %H:%M %p') }}</h5>
                             </div>
                         </div>
@@ -62,6 +62,7 @@
             </div>
             <div id='toDoListContainer' class='col-md-4'>
                 <h4>To Do</h4>
+
                 <div id='toDoList'>
                     {% for task in todo %}
                         <div class='container list-item'>

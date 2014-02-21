@@ -72,8 +72,9 @@
                     <div class='leftBox'>
                         <div id='task-functionBox'>
                             <div class='functionSide'>
-                                <a id={{task._id}} href="#"><i class='fa fa-pencil fa-lg'></i></a>
-                                <a id={{task._id}} href="#"><i class='fa fa-trash-o fa-lg'></i></a>
+                                <a><i id={{task._id}} class='fa fa-plus fa-lg'></i></a>
+                                <a><i id={{task._id}} class='fa fa-pencil fa-lg'></i></a>
+                                <a><i id={{task._id}} class='fa fa-trash-o fa-lg'></i></a>
                             </div>
                         </div>
                         <div class='goalBox'>
@@ -219,14 +220,28 @@
         currentTaskId = $(this).attr('id'); 
     }); 
     $('.task .fa-trash-o').on('click',function(){
-        currentTaskId = $(this).parent().attr('id'); 
+        currentTaskId = $(this).attr('id'); 
         $.get('/removetask/' + currentTaskId); 
     }); 
     $('.mainGoal .fa-trash-o').on('click',function(){
         currentGoalId = $(this).attr('id'); 
         console.log(currentGoalId);
-        $.get('/removegoal/' + currentGoalId); 
-        $.get('/deleted');
+        if(confirm('Are you sure you want to remove this goal?')){
+            $.get('/removegoal/' + currentGoalId,function(){
+                window.location.href='/goals';
+            }); 
+        } else {
+            alert('Goal not deleted!');
+        }
     }); 
+    $('.functionSide .fa-plus').click(function(){
+        event.preventDefault();
+        taskid = $(this).attr('id');
+        console.log(taskid);
+        url = '/jointask/' + taskid;
+        $.get(url);
+        alert('task joined!');
+        location.reload(true);
+    });
 </script>
 </html>

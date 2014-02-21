@@ -23,16 +23,19 @@ f = open('index.html', 'r')
 idx = f.read();
 
 #define filters for use with jinja2
+#TODO function to check if person is already in a task, goal, etc...
 def datetimeformat(value,format='%Y-%m-%d'):
     return parser.parse(value).strftime('%B %d, %Y')
 def namefusername(value):
     return db.users.find_one({'username':value})['name']
 def goalnamefid(value):
-    goalid = ObjectId(value)
-    if db.goals.find_one({'_id':goalid}):
-        return db.goals.find_one({'_id':goalid})['name']
+    thisid = ObjectId(value)
+    if db.goals.find_one({'_id':thisid}):
+        return db.goals.find_one({'_id':thisid})['name']
+    elif db.tasks.find_one({'_id':thisid}):
+        return db.tasks.find_one({'_id':thisid})['name']
     else:
-        return "Goal does not exist"
+        return "These aren't the droids you're looking for...move along...move along"
 
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['namefusername'] = namefusername
@@ -64,7 +67,7 @@ def completeTask(goalid,taskid,comment=""):
         taskid = ObjectId(taskid)
 
     db.tasks.update({'_id':taskid},{'$pull':{'people':{'username':session['email']}}} )
-    db.tasks.update({'_id':taskid},{'$push':{'completed':{'username':session['email'],'picture':session['picture']}}} )
+    db.tasks.update({'_id':taskid},{'$addToSet':{'completed':{'username':session['email'],'picture':session['picture']}}} )
     tryuser = db.users.find_one({"username":session["email"]})
     trytask = db.tasks.find_one({"goalid":goalid,"_id":taskid})
     if comment != "":
@@ -185,14 +188,18 @@ def goals():
 
 @app.route('/goals/<goal>')
 def goaltree(goal):
-    trygoal = db.goals.find_one({'name':goal})
-    goalid =  trygoal['_id']
-    tasks = db.tasks.find({'goalid':goalid})
-    todo = []
-    for item in tasks:
-        todo.append(item)
-    todo = sorted(todo, key=lambda item: datetimeformat(item['end']),reverse=True)
-    return render_template('goaltree.html',tasks=todo,goal=trygoal,today=datetime.datetime.now().date())
+    try:
+        me = db.users.find_one({'username':session['email']})
+        trygoal = db.goals.find_one({'name':goal})
+        goalid =  trygoal['_id']
+        tasks = db.tasks.find({'goalid':goalid})
+        todo = []
+        for item in tasks:
+            todo.append(item)
+        todo = sorted(todo, key=lambda item: datetimeformat(item['end']),reverse=True)
+        return render_template('goaltree.html',me=me,tasks=todo,goal=trygoal,today=datetime.datetime.now().date())
+    except:
+        return "These aren't the droids you're looking for...move along...move along...<br><br><a href='/'>YOU ARE RIGHT</a>"
 
 @app.route('/friends')
 def friends(): 
@@ -292,17 +299,36 @@ def removegoal(goalid):
 def goaldeleted():
     return "Goal Deleted!"
 
-@app.route('/joingoal/<goalid>')
+@app.route('/joingoal/<goalid>',methods=['GET','POST'])
 def joingoal(goalid):
     if type(goalid) == unicode or type(goalid) ==str:
         goalid = ObjectId(goalid)
 
-    db.goals.update({'_id':goalid},{'$push':{'people':{'username':session['email'],'picture':session['picture']}}} )
-    db.tasks.update({'goalid':goalid},{'$push':{'people':{'username':session['email'],'picture':session['picture']}}})
+    goal = db.goals.find_one({'_id':goalid})
+    users = [ x['username'] for x in goal['people'] ]
+    for user in users:
+        db.users.update({'username':user},{'$push':{'feed':{'date':datetime.datetime.now(),'picture':session['picture'],'message':session['name'] + ' just joined a goal you are working on!','type':'goaljoin','id':goalid}}}) 
+
+    db.goals.update({'_id':goalid},{'$addToSet':{'people':{'username':session['email'],'picture':session['picture']}}} )
+    db.tasks.update({'goalid':goalid},{'$addToSet':{'people':{'username':session['email'],'picture':session['picture']}}})
     db.users.update({'username':session['email']},{'$pull':{'feed':{'id':goalid}}}) 
     db.users.update({'username':session['email']},{'$pull':{'goalrequests':{'goalid':goalid}}}) 
-        
+     
     return 'Goal accepted!'
+
+@app.route('/jointask/<taskid>')
+def jointask(taskid):
+    if type(taskid) == unicode or type(taskid) ==str:
+        taskid = ObjectId(taskid)
+
+    task = db.tasks.find_one({'_id':taskid})
+    users = [ x['username'] for x in task['people'] ]
+    for user in users:
+        db.users.update({'username':user},{'$push':{'feed':{'date':datetime.datetime.now(),'picture':session['picture'],'message':session['name'] + ' just joined a task you are working on!','type':'taskjoin','id':taskid}}}) 
+    #TODO if a user adds a task, then all users should get a message, but those who aren't on the task should get a different message.
+
+    db.tasks.update({'_id':taskid},{'$addToSet':{'people':{'username':session['email'],'picture':session['picture']}}})
+    return 'Task accepted!'
 
 @app.route('/addgoal/<title>/<description>/<startdate>/<enddate>/<taskArr>/<friendArr>')
 def addgoal(title,description,startdate,enddate,taskArr,friendArr):

@@ -505,7 +505,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 #goalTree .task #task-functionBox{
-    width:70px;
+    width:100px;
     float:right;
     height:100%;
 	margin-right: -50px;
